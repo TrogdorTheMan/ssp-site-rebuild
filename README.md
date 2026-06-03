@@ -1,8 +1,8 @@
 # Seattle Seafair Pirates — Site Rebuild
 
-A ground-up static rebuild of [seafairpirates.org](https://seafairpirates.org), the official website of the Seattle Seafair Pirates. 
+A ground-up static rebuild of [seafairpirates.org](https://seafairpirates.org), the official website of the Seattle Seafair Pirates.
 
-View live hosted pages until cutover: https://trogdortheman.github.io/ssp-site-rebuild/
+View live: https://trogdortheman.github.io/ssp-site-rebuild/
 
 ## About the Project
 
@@ -22,11 +22,13 @@ This project is maintained by **TrogdorTheMan** — an IT professional and activ
 
 - Plain HTML5 & CSS3 — no frameworks, no build step
 - Fonts via Google Fonts (Playfair Display, Crimson Pro, Space Mono)
+- Leaflet.js for the interactive 2026 Destinations map
 - Images served from the existing seafairpirates.org CDN until Netlify go-live
 - Deployment target: GitHub Pages / Netlify
 
 ## Pages
 
+### Our History
 | Page | File |
 |---|---|
 | Home | `index.html` |
@@ -36,3 +38,30 @@ This project is maintained by **TrogdorTheMan** — an IT professional and activ
 | The Moby Duck | `the-moby-duck.html` |
 | Captain Kidd — Past to Present | `captain-kidd.html` |
 | History in Pictures | `our-history-in-pictures.html` |
+
+### Destinations
+| Page | File |
+|---|---|
+| 2026 Destinations | `2026-destinations.html` |
+
+### Seafair
+| Page | File |
+|---|---|
+| The Birth of Seafair | `the-birth-of-seafair.html` |
+| Signature Seafair Events | `signature-seafair-events.html` |
+| Seafair Volunteer Groups | `seafair-volunteer-groups.html` |
+| More Seafair Traditions | `more-seafair-traditions.html` |
+| The Legend of Seafair (1953) | `the-legend-of-seafair-1953.html` |
+| The Legend of Seafair (1954) | `the-legend-of-seafair-1954.html` |
+
+### Gallery
+| Page | File |
+|---|---|
+| Gallery of Rogues | `gallery-of-rogues.html` |
+| Then & Now | `then-and-now.html` |
+| Videos | `videos.html` |
+
+### Other
+| Page | File |
+|---|---|
+| Sponsors | `sponsors.html` |
