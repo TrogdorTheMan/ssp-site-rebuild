@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History in Pictures — Seattle Seafair Pirates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0a1628;
+    --navy-mid:   #0f2040;
+    --navy-light: #1a3358;
+    --gold:       #c8960a;
+    --gold-light: #e8b420;
+    --gold-pale:  #f5d97a;
+    --parchment:  #f0e6c8;
+    --parchment-dark: #d4c49a;
+    --cream:      #faf6ed;
+    --rust:       #8b3a1a;
+    --text-on-dark: #e8dfc8;
+    --text-muted:   #8a9ab5;
+    --border-gold:  rgba(200,150,10,0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-on-dark);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVIGATION ─────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    transition: background 0.3s;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--gold-light);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .nav-logo img { height: 40px; width: auto; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+  }
+
+  .nav-links li { position: relative; }
+
+  .nav-links > li > a,
+  .nav-links > li > button {
+    display: block;
+    padding: 0 1rem;
+    height: 64px;
+    line-height: 64px;
+    text-decoration: none;
+    color: var(--text-on-dark);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .nav-links > li > a:hover,
+  .nav-links > li > button:hover { color: var(--gold-light); }
+
+  .dropdown { position: relative; }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 64px; left: 0;
+    background: var(--navy-mid);
+    border: 1px solid var(--border-gold);
+    border-top: 2px solid var(--gold);
+    min-width: 220px;
+    list-style: none;
+    z-index: 200;
+  }
+
+  .dropdown:hover .dropdown-menu { display: block; }
+
+  .dropdown-menu li a {
+    display: block;
+    padding: 0.6rem 1.2rem;
+    color: var(--text-on-dark);
+    text-decoration: none;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(200,150,10,0.1);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .dropdown-menu li a:hover { background: var(--navy-light); color: var(--gold-pale); }
+
+  .nav-cta {
+    margin-left: 1rem;
+    padding: 0.45rem 1.2rem !important;
+    height: auto !important;
+    line-height: normal !important;
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    font-weight: 700 !important;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    font-size: 0.85rem !important;
+    text-transform: uppercase;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  .nav-social {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-left: 1.5rem;
+  }
+
+  .nav-social a { color: var(--text-muted); transition: color 0.2s; display: flex; align-items: center; }
+  .nav-social a:hover { color: var(--gold-light); }
+  .nav-social svg { width: 18px; height: 18px; fill: currentColor; }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-on-dark);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .hamburger svg { width: 24px; height: 24px; fill: currentColor; }
+
+  /* ── PAGE HEADER ─────────────────────────────────────────────── */
+  .page-header {
+    padding: 120px 5vw 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .page-header .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-header h1 em { font-style: italic; color: var(--gold-pale); }
+
+  .page-header .credit {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── YEAR JUMP NAV ───────────────────────────────────────────── */
+  .year-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem 5vw;
+    border-bottom: 1px solid var(--border-gold);
+    position: sticky;
+    top: 64px;
+    z-index: 50;
+    background: rgba(10,22,40,0.95);
+    backdrop-filter: blur(8px);
+  }
+
+  .year-nav a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .year-nav a:hover,
+  .year-nav a.active { color: var(--gold-light); border-color: var(--border-gold); }
+
+  /* ── YEAR SECTION ────────────────────────────────────────────── */
+  .year-section {
+    padding: 4rem 5vw;
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .year-banner {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* ── PHOTO GRID ──────────────────────────────────────────────── */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 6px;
+  }
+
+  .photo-grid-item {
+    position: relative;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--navy-mid);
+  }
+
+  .photo-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease, filter 0.35s ease;
+    filter: brightness(0.9);
+  }
+
+  .photo-grid-item:hover img {
+    transform: scale(1.04);
+    filter: brightness(1.05);
+  }
+
+  .photo-grid-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+    pointer-events: none;
+  }
+
+  .photo-grid-item:hover::after { border-color: var(--gold); }
+
+  /* ── LIGHTBOX ────────────────────────────────────────────────── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(5,12,22,0.97);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 92vw;
+    max-height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 8px 60px rgba(0,0,0,0.7);
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.2s;
+    z-index: 1001;
+  }
+
+  .lightbox-close:hover { color: var(--gold-light); }
+
+  .lightbox-prev,
+  .lightbox-next {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(10,22,40,0.7);
+    border: 1px solid var(--border-gold);
+    color: var(--text-on-dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 1rem 0.8rem;
+    transition: background 0.2s, color 0.2s;
+    z-index: 1001;
+    line-height: 1;
+  }
+
+  .lightbox-prev { left: 0.75rem; }
+  .lightbox-next { right: 0.75rem; }
+  .lightbox-prev:hover,
+  .lightbox-next:hover { background: var(--navy-light); color: var(--gold-light); }
+
+  .lightbox-counter {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────────── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border-gold);
+    padding: 3rem 5vw 0;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .footer-brand .nav-logo { margin-bottom: 0.75rem; display: inline-flex; }
+  .footer-brand p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; max-width: 280px; }
+
+  .footer-col h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.4rem; }
+  .footer-col ul li a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--text-on-dark); }
+
+  .footer-bottom {
+    padding: 1.2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: var(--navy-mid);
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-gold);
+      z-index: 99;
+    }
+    .nav-links.open > li > a,
+    .nav-links.open > li > button { height: auto; line-height: 1.4; padding: 0.75rem 1.5rem; }
+    .nav-links.open .dropdown-menu { position: static; border: none; background: var(--navy-light); display: none; }
+    .nav-links.open .dropdown.open .dropdown-menu { display: block; }
+    .hamburger { display: block; }
+    .nav-social { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .photo-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 4px; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/shared/logo.png" alt="Seafair Pirates logo">
+    Seattle Seafair Pirates
+  </a>
+
+  <ul class="nav-links" id="nav-links">
+    <li class="dropdown">
+      <button>Our History ▾</button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Seattle Seafair Pirates</a></li>
+        <li><a href="#">The Washington State Press Club</a></li>
+        <li><a href="#">The Ale &amp; Quail Society</a></li>
+        <li><a href="#">The Moby Duck</a></li>
+        <li><a href="#">Captain Kidd — Past to Present</a></li>
+        <li><a href="our-history-in-pictures.html">History in Pictures</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Pirates Log</a></li>
+    <li class="dropdown">
+      <button>Destinations ▾</button>
+      <ul class="dropdown-menu">
+        <li><a href="#">2026 Destinations</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <button>Seafair ▾</button>
+      <ul class="dropdown-menu">
+        <li><a href="#">The Birth of Seafair</a></li>
+        <li><a href="#">Signature Seafair Events</a></li>
+        <li><a href="#">Seafair Volunteer Groups</a></li>
+        <li><a href="#">More Seafair Traditions</a></li>
+        <li><a href="#">The Legend of Seafair (1953)</a></li>
+        <li><a href="#">The Legend of Seafair (1954)</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <button>Gallery ▾</button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Gallery of Rogues</a></li>
+        <li><a href="#">Then and Now</a></li>
+        <li><a href="#">Videos</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Sponsors</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="#" class="nav-cta">Join the Crew</a></li>
+    <li class="nav-social">
+      <a href="https://twitter.com/seafairpirates" target="_blank" rel="noopener" aria-label="Twitter">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L2.25 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/SeattleSeafairPirates/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/seafairpirates/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+    </li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <svg viewBox="0 0 24 24"><rect y="4" width="24" height="2" rx="1"/><rect y="11" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+  </button>
+</nav>
+
+<!-- ── PAGE HEADER ────────────────────────────────────────────────── -->
+<header class="page-header">
+  <p class="eyebrow">Our History</p>
+  <h1>History in <em>Pictures</em></h1>
+  <p class="credit">Photographs by Becky Washington</p>
+</header>
+
+<!-- ── YEAR JUMP NAV ──────────────────────────────────────────────── -->
+<nav class="year-nav" aria-label="Jump to year">
+  <a href="#y2015">2015</a>
+  <a href="#y2016">2016</a>
+  <a href="#y2017">2017</a>
+  <a href="#y2018">2018</a>
+  <a href="#y2019">2019</a>
+  <a href="#y2020">2020</a>
+  <a href="#y2021">2021</a>
+  <a href="#y2022">2022</a>
+  <a href="#y2023">2023</a>
+  <a href="#y2024">2024</a>
+  <a href="#y2025">2025</a>
+</nav>
+
+<!-- ── 2015 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2015">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2015-1.jpg" alt="2015">
+  <div class="photo-grid" data-year="2015">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2089-Landing-scaled.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_2251-Landing-2-1.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_2406-Landing-10.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2308-Landing-Edited-2-scaled.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_2764-Landing-2.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_5175-Poulsbo-4.jpg" alt="Poulsbo"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_8424-Picture-Day-1-scaled.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_8664-Picture-Day-scaled.jpg" alt="Picture Day"></div>
+  </div>
+</section>
+
+<!-- ── 2016 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2016">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2016-5.jpg" alt="2016">
+  <div class="photo-grid" data-year="2016">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_0894-Landing-4-scaled.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_0131-Milk-Carton-Derby-2016.jpg" alt="Milk Carton Derby"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_0894-Landing.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3360-Torchlight.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_5651-Picture-day-1.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_5804-Picture-day-1200-1.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2169-Torchlight-scaled.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7927-Landing-3.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_6372-Picture-day-4.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6180-St-Patricks-Day-1.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7927-Landing-5.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7927-Landing-scaled.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8624-Landing-3.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8742-Landing-1200-1.jpg" alt="Landing"></div>
+  </div>
+</section>
+
+<!-- ── 2017 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2017">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2017.jpg" alt="2017">
+  <div class="photo-grid" data-year="2017">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_1473-Landing-scaled.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_2918-St-Pats-2-1.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3462-St-pats1-1-scaled.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_5252-Picture-day-03.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_5485-Picture-day-1200.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6806-Greenwood.jpg" alt="Greenwood"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7907-Landing-1.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8677-Landing-2-1.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_9670-Landing-2.jpg" alt="Landing"></div>
+  </div>
+</section>
+
+<!-- ── 2018 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2018">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2018.jpg" alt="2018">
+  <div class="photo-grid" data-year="2018">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_0114-Torchlight-1200-4.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_0413-Landing-1200-1.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_0901-Picture-day-1200-2.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1248-Picture-day-1200-2.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1309-Navy-Chiefs-1200-1.jpg" alt="Navy Chiefs"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1585-Blue-Angels-1200-3.jpg" alt="Blue Angels"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1652-Picture-Day-1200-2.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_1814-Landing-1200-2.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2023-Landing-1200-2.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2048-Picture-day-1200-2.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2494-Special-people-dinner-1200-2.jpg" alt="Special People Dinner"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_3763-Picture-day-1200-2.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3900-Bad-santa-1200-2.jpg" alt="Bad Santa"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_4153-Pirates-and-mermaids-1200-1.jpg" alt="Pirates and Mermaids"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_4544-bad-santa-1200-4.jpg" alt="Bad Santa"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_4932-Pirates-and-mermaids-1200-3.jpg" alt="Pirates and Mermaids"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_4946-Chinatown-1200-2.jpg" alt="Chinatown"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_5024-Pirates-and-mermaids-1200-2.jpg" alt="Pirates and Mermaids"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_5351-Chinatown-1200-2.jpg" alt="Chinatown"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_6189-Greenwood-1200-3.jpg" alt="Greenwood"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6329-St-pats-1200-2.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6388-St-pats-1200-2.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6535-St-Pats-1200-2.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7451-St-pats-1200-2.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9965-Torchlight-1200-2.jpg" alt="Torchlight"></div>
+  </div>
+</section>
+
+<!-- ── 2019 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2019">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2019.jpg" alt="2019">
+  <div class="photo-grid" data-year="2019">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_030-Daffodil-cropped.jpg" alt="Daffodil"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_0428-Landing-2.jpg" alt="Landing"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_0967-Daffodil-2.jpg" alt="Daffodil"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_1320-Torchligh-2.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1442-Daffodil-1.jpg" alt="Daffodil"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2595-Torchlight.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3717-Picture-day.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3772-Picture-day.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_4172-Picture-day-5-1.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_4435-Picture-day-1.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_4812-Benbow-01.jpg" alt="Benbow"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6336-Pride-1.jpg" alt="Pride"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7591-painting-the-line-1.jpg" alt="Painting the Line"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_7867-Chinatown-2.jpg" alt="Chinatown"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8150-St-Pats-2.jpg" alt="St. Patrick's Day"></div>
+  </div>
+</section>
+
+<!-- ── 2020 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2020">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2020.jpg" alt="2020">
+  <div class="photo-grid" data-year="2020">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_0125-1200.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_0245-1200-3-1.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_0655-1200-3-1.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_0671-1200.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_0731-1200.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1110-1200.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1140-1200.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_8936-1200-2.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9403-1200.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9791-1200-2.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_9928-1200-3.jpg" alt="2020"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9983-1200.jpg" alt="2020"></div>
+  </div>
+</section>
+
+<!-- ── 2021 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2021">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2021.jpg" alt="2021">
+  <div class="photo-grid" data-year="2021">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_0378-Bad-santa-1200-4.jpg" alt="Bad Santa"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1008-Mama-Blue-birthday-1200.jpg" alt="Mama Blue Birthday"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1234-mama-Blue-birthday-1200.jpg" alt="Mama Blue Birthday"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1538-Rusty-Scuppers-1200.jpg" alt="Rusty Scuppers"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1767-1200-Rusty-Scuppers.jpg" alt="Rusty Scuppers"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2193-Rusty-Scuppers-1200-1.jpg" alt="Rusty Scuppers"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2624-Rusty-Scuppers-1200.jpg" alt="Rusty Scuppers"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3219-Rusty-Scuppers-1200.jpg" alt="Rusty Scuppers"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3459-Rusty-Scuppers-1200.jpg" alt="Rusty Scuppers"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3554-Rusty-Scuppers-1200-3.jpg" alt="Rusty Scuppers"></div>
+  </div>
+</section>
+
+<!-- ── 2022 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2022">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2022.jpg" alt="2022">
+  <div class="photo-grid" data-year="2022">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2090-St-Pats-1200.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2538-Montlake-Terrace-1200.jpg" alt="Montlake Terrace"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2542-St-Pats-1200.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3379-West-Seattle-1200-1-1.jpg" alt="West Seattle"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3451-Daffodil-1200-1.jpg" alt="Daffodil"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_3460-Daffodil-1200-3.jpg" alt="Daffodil"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3722-Daffodil-1200-1.jpg" alt="Daffodil"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3765-Daffodil-1200.jpg" alt="Daffodil"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_4190-Daffodil-1200.jpg" alt="Daffodil"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_5098-Snohomish-1200.jpg" alt="Snohomish"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_5161-Snohomish-1200.jpg" alt="Snohomish"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6309-Picture-Day-2.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6644-Picture-Day.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6696-Chinatown.jpg" alt="Chinatown"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_6913-Picture-day-1200-2.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7191-Chinatown-1200-1.jpg" alt="Chinatown"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7213-Chinatown.jpg" alt="Chinatown"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7494-Pic-day-1200.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_7622-Pic-day-1200-1.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8112-Torchlight-1200-3.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8809-Torchlight-3.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_9444-China-Town-1200-1.jpg" alt="Chinatown"></div>
+  </div>
+</section>
+
+<!-- ── 2023 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2023">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2023.jpg" alt="2023">
+  <div class="photo-grid" data-year="2023">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1914-West-Seattle-1200.jpg" alt="West Seattle"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2171nWest-Seattle-1200.jpg" alt="West Seattle"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_4044-Chinatown-1200.jpg" alt="Chinatown"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_4199-Chinatown-1200.jpg" alt="Chinatown"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_5638-Torch-1200-2.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_5689-Torch-1200-2.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_5862-Torch-1200-1.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6364-Torch-scaled.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_6374-Torch-1200-1.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6417-Torch-1200.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_6931-Torch-1200.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7511-St-Pats.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8022-Snoqualmie-1200-1.jpg" alt="Snoqualmie"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_8487-Easter-1200.jpg" alt="Easter"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9293-Pic-day-1200.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9522-Granite-Falls-1200-1.jpg" alt="Granite Falls"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9724-Captain-shoot-1200-2.jpg" alt="Captain Shoot"></div>
+  </div>
+</section>
+
+<!-- ── 2024 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2024">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2024/11/2024.jpg" alt="2024">
+  <div class="photo-grid" data-year="2024">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_1589-St-Pats-1200.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_2304-St-Pats-1200-1-1.jpg" alt="St. Patrick's Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_3058-West-Seattle-1200.jpg" alt="West Seattle"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_3270-West-Seattle-1200-5-1.jpg" alt="West Seattle"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_3988-West-Seattle-1200-2.jpg" alt="West Seattle"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_4895-Des-Moines-1200-2.jpg" alt="Des Moines"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_5587-Picture-Day-1200-1.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_6458-Troll-1200-6.jpg" alt="Troll"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_6708-Picture-day-1200-3.jpg" alt="Picture Day"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_7107-Torchlight-1200.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8029-Torchlight-1200-1.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8098-Torchlight-1200-1.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_8416-Torchlight-1200.jpg" alt="Torchlight"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/11/DSC_8842-Snoqualmie-1200-3.jpg" alt="Snoqualmie"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9272-Bothell-4th-of-July-1200-1.jpg" alt="Bothell 4th of July"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9290-Granite-Falls-1200.jpg" alt="Granite Falls"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_9700-Monroe-1200.jpg" alt="Monroe"></div>
+  </div>
+</section>
+
+<!-- ── 2025 ───────────────────────────────────────────────────────── -->
+<section class="year-section" id="y2025">
+  <img class="year-banner" src="https://seafairpirates.org/wp-content/uploads/2026/03/2025.jpg" alt="2025">
+  <div class="photo-grid" data-year="2025">
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_0122-4.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_0281-2.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_0328.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_0526.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_0818.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_1141.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_1534.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_2899-Enhanced.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_3064-Enhanced.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_3213-1.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DCS_6816.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_4920.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_4959.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_4978.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_5172.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_5204.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_5240.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_5644.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_7223.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_7473.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_7492.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_7527.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_7601.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_7932.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_8054-1.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_8675.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_8702.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_9814.jpg" alt="2025"></div>
+    <div class="photo-grid-item"><img loading="lazy" src="https://seafairpirates.org/wp-content/uploads/2026/03/DSC_9992.jpg" alt="2025"></div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <img src="images/shared/logo.png" alt="Seafair Pirates logo">
+        Seafair Pirates
+      </a>
+      <p>Seattle's high-humored heist since 1949. Community servants, entertainers, and keepers of Seafair tradition.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Our History</h4>
+      <ul>
+        <li><a href="#">Seattle Seafair Pirates</a></li>
+        <li><a href="#">The Moby Duck</a></li>
+        <li><a href="#">Ale &amp; Quail Society</a></li>
+        <li><a href="#">Captain Kidd</a></li>
+        <li><a href="our-history-in-pictures.html">History in Pictures</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#">2026 Destinations</a></li>
+        <li><a href="#">Pirates Log</a></li>
+        <li><a href="#">Gallery of Rogues</a></li>
+        <li><a href="#">Videos</a></li>
+        <li><a href="#">Our Sponsors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get Involved</h4>
+      <ul>
+        <li><a href="#">Join the Crew</a></li>
+        <li><a href="index.html#contact">Book for Your Event</a></li>
+        <li><a href="https://www.paypal.com/donate/?hosted_button_id=TTRPVCM2ZUGC8" target="_blank" rel="noopener">Donate</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Seattle Seafair Pirates. All rights reserved.</p>
+    <p>Made with ⚓ in Seattle, WA</p>
+  </div>
+</footer>
+
+<!-- ── LIGHTBOX ────────────────────────────────────────────────────── -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lightbox-close" id="lb-close" aria-label="Close">×</button>
+  <button class="lightbox-prev" id="lb-prev" aria-label="Previous photo">‹</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lb-img" src="" alt="">
+  </div>
+  <button class="lightbox-next" id="lb-next" aria-label="Next photo">›</button>
+  <div class="lightbox-counter" id="lb-counter"></div>
+</div>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  document.querySelectorAll('.dropdown > button').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      btn.closest('.dropdown').classList.toggle('open');
+    });
+  });
+
+  // Build flat array of all grid images for lightbox navigation
+  const allItems = Array.from(document.querySelectorAll('.photo-grid .photo-grid-item img'));
+  let currentIdx = 0;
+
+  const lightbox   = document.getElementById('lightbox');
+  const lbImg      = document.getElementById('lb-img');
+  const lbCounter  = document.getElementById('lb-counter');
+
+  allItems.forEach((img, i) => {
+    img.parentElement.addEventListener('click', () => open(i));
+  });
+
+  function open(idx) {
+    currentIdx = idx;
+    lbImg.src = allItems[idx].src;
+    lbImg.alt = allItems[idx].alt;
+    lbCounter.textContent = (idx + 1) + ' / ' + allItems.length;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  function navigate(dir) {
+    open((currentIdx + dir + allItems.length) % allItems.length);
+  }
+
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', () => navigate(-1));
+  document.getElementById('lb-next').addEventListener('click', () => navigate(1));
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')      close();
+    if (e.key === 'ArrowLeft')   navigate(-1);
+    if (e.key === 'ArrowRight')  navigate(1);
+  });
+
+  // Highlight active year in sticky nav as user scrolls
+  const sections  = document.querySelectorAll('.year-section');
+  const yearLinks = document.querySelectorAll('.year-nav a');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        yearLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
