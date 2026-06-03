@@ -1,6 +1,8 @@
 # Seattle Seafair Pirates — Site Rebuild
 
-A ground-up static rebuild of [seafairpirates.org](https://seafairpirates.org), the official website of the Seattle Seafair Pirates. https://trogdortheman.github.io/ssp-site-rebuild/
+A ground-up static rebuild of [seafairpirates.org](https://seafairpirates.org), the official website of the Seattle Seafair Pirates. 
+
+View live hosted pages until cutover: https://trogdortheman.github.io/ssp-site-rebuild/
 
 ## About the Project
 
