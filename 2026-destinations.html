@@ -316,14 +316,36 @@
     white-space: nowrap;
   }
 
-  .event-name a {
-    color: var(--text-on-dark);
-    text-decoration: none;
+  .event-map-btn {
+    background: none;
+    border: none;
     border-bottom: 1px solid rgba(200,150,10,0.35);
+    color: var(--text-on-dark);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: inherit;
+    text-align: left;
     transition: color 0.2s, border-color 0.2s;
   }
 
-  .event-name a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+  .event-map-btn:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+  .event-ext-link {
+    margin-left: 0.75rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    vertical-align: middle;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+
+  .event-ext-link:hover { opacity: 1; }
 
   .leaflet-popup-content a {
     color: var(--gold-light);
@@ -508,7 +530,7 @@
     <p class="season-label">Winter</p>
     <div class="event-row">
       <span class="event-date">Feb 21</span>
-      <span class="event-name"><a href="https://www.seafair.org/winter-by-the-water/" target="_blank" rel="noopener">Seafair Winter by the Water</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="winter-water">Seafair Winter by the Water</button><a class="event-ext-link" href="https://www.seafair.org/winter-by-the-water/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Seattle Waterfront</span>
     </div>
   </div>
@@ -517,12 +539,12 @@
     <p class="season-label">Spring</p>
     <div class="event-row">
       <span class="event-date">Mar 14</span>
-      <span class="event-name"><a href="https://irishclub.org/event/st-patricks-day-parade-2/" target="_blank" rel="noopener">St. Patrick's Day Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="st-pats">St. Patrick's Day Parade</button><a class="event-ext-link" href="https://irishclub.org/event/st-patricks-day-parade-2/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Seattle</span>
     </div>
     <div class="event-row">
       <span class="event-date">Apr 4</span>
-      <span class="event-name"><a href="https://thedaffodilfestival.org/event/2026-grand-floral-parade/" target="_blank" rel="noopener">Daffodil Festival Parades</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="daffodil">Daffodil Festival Parades</button><a class="event-ext-link" href="https://thedaffodilfestival.org/event/2026-grand-floral-parade/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Tacoma / Puyallup / Sumner / Orting</span>
     </div>
   </div>
@@ -531,47 +553,47 @@
     <p class="season-label">Summer</p>
     <div class="event-row">
       <span class="event-date">Jun 27</span>
-      <span class="event-name"><a href="https://www.seafair.org/event/pirates-landing/" target="_blank" rel="noopener">Pirate Landing on Alki Beach</a> <span class="event-badge">~1:30 PM</span></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="alki-landing">Pirate Landing on Alki Beach</button> <span class="event-badge">~1:30 PM</span><a class="event-ext-link" href="https://www.seafair.org/event/pirates-landing/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">West Seattle</span>
     </div>
     <div class="event-row">
       <span class="event-date">TBD</span>
-      <span class="event-name"><a href="https://seafairparademarshals.org/locations/greenwood-seafair-parade-2/" target="_blank" rel="noopener">Greenwood Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="greenwood">Greenwood Parade</button><a class="event-ext-link" href="https://seafairparademarshals.org/locations/greenwood-seafair-parade-2/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Seattle</span>
     </div>
     <div class="event-row">
       <span class="event-date">TBD</span>
-      <span class="event-name"><a href="https://www.bothellwa.gov/269/Fourthof-July-Parade-Pancake-Breakfast" target="_blank" rel="noopener">Bothell Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="bothell">Bothell Parade</button><a class="event-ext-link" href="https://www.bothellwa.gov/269/Fourthof-July-Parade-Pancake-Breakfast" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Bothell</span>
     </div>
     <div class="event-row">
       <span class="event-date">TBD</span>
-      <span class="event-name">Mountlake Terrace — Tour de Terrace</span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="tour-de-terrace">Mountlake Terrace — Tour de Terrace</button></span>
       <span class="event-location">Mountlake Terrace</span>
     </div>
     <div class="event-row">
       <span class="event-date">TBD</span>
-      <span class="event-name"><a href="https://www.seafair.org/event/west-seattle-grand-parade/" target="_blank" rel="noopener">West Seattle Grand Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="west-seattle">West Seattle Grand Parade</button><a class="event-ext-link" href="https://www.seafair.org/event/west-seattle-grand-parade/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">West Seattle</span>
     </div>
     <div class="event-row">
       <span class="event-date">TBD</span>
-      <span class="event-name"><a href="https://kcdays.com/kent-cornucopia-grand-parade/" target="_blank" rel="noopener">Kent Cornucopia Days Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="kent">Kent Cornucopia Days Parade</button><a class="event-ext-link" href="https://kcdays.com/kent-cornucopia-grand-parade/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Kent</span>
     </div>
     <div class="event-row">
       <span class="event-date">TBD</span>
-      <span class="event-name"><a href="https://www.seattlechinesechamber.org/chinatown-parade.html" target="_blank" rel="noopener">Chinatown–International District Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="chinatown">Chinatown–International District Parade</button><a class="event-ext-link" href="https://www.seattlechinesechamber.org/chinatown-parade.html" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Seattle</span>
     </div>
     <div class="event-row">
       <span class="event-date">TBD</span>
-      <span class="event-name"><a href="https://www.waterlandfestival.org/" target="_blank" rel="noopener">Des Moines Waterland Festival Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="des-moines">Des Moines Waterland Festival Parade</button><a class="event-ext-link" href="https://www.waterlandfestival.org/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Des Moines</span>
     </div>
     <div class="event-row">
       <span class="event-date">TBD</span>
-      <span class="event-name"><a href="https://www.marysvillestrawberryfest.com/" target="_blank" rel="noopener">Marysville Strawberry Festival Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="marysville">Marysville Strawberry Festival Parade</button><a class="event-ext-link" href="https://www.marysvillestrawberryfest.com/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Marysville</span>
     </div>
     <div class="event-row">
@@ -581,7 +603,7 @@
     </div>
     <div class="event-row">
       <span class="event-date">Jul 25</span>
-      <span class="event-name"><a href="https://www.seafair.org/torchlight-parade/" target="_blank" rel="noopener">Seafair Torchlight Parade</a> <span class="event-badge">7:30 PM</span></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="torchlight">Seafair Torchlight Parade</button> <span class="event-badge">7:30 PM</span><a class="event-ext-link" href="https://www.seafair.org/torchlight-parade/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Seattle</span>
     </div>
   </div>
@@ -590,22 +612,22 @@
     <p class="season-label">Fall</p>
     <div class="event-row">
       <span class="event-date">Aug 15</span>
-      <span class="event-name"><a href="https://www.festivalatmtsi.org/" target="_blank" rel="noopener">Mt. Si Festival Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="mt-si">Mt. Si Festival Parade</button><a class="event-ext-link" href="https://www.festivalatmtsi.org/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">North Bend</span>
     </div>
     <div class="event-row">
       <span class="event-date">Aug 22</span>
-      <span class="event-name"><a href="https://www.evergreenfair.org/" target="_blank" rel="noopener">Monroe Fair Days</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="monroe">Monroe Fair Days</button><a class="event-ext-link" href="https://www.evergreenfair.org/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Monroe</span>
     </div>
     <div class="event-row">
       <span class="event-date">Sep 19</span>
-      <span class="event-name"><a href="https://www.yakimaparades.com/sunfair" target="_blank" rel="noopener">Yakima Sunfair Parade</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="yakima">Yakima Sunfair Parade</button><a class="event-ext-link" href="https://www.yakimaparades.com/sunfair" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Yakima</span>
     </div>
     <div class="event-row">
       <span class="event-date">Oct 3</span>
-      <span class="event-name"><a href="https://granitefallswa.com/events/railroad-days/" target="_blank" rel="noopener">Granite Falls Railroad Days</a></span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="granite-falls">Granite Falls Railroad Days</button><a class="event-ext-link" href="https://granitefallswa.com/events/railroad-days/" target="_blank" rel="noopener">More info ↗</a></span>
       <span class="event-location">Granite Falls</span>
     </div>
   </div>
@@ -614,7 +636,7 @@
     <p class="season-label">Holiday</p>
     <div class="event-row">
       <span class="event-date">Dec 6</span>
-      <span class="event-name">Holiday Cruise</span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="holiday-cruise">Holiday Cruise</button></span>
       <span class="event-location">Seattle</span>
     </div>
     <div class="event-row">
@@ -705,31 +727,45 @@
   });
 
   const events = [
-    { name: 'Seafair Winter by the Water', date: 'Feb 21', url: 'https://www.seafair.org/winter-by-the-water/', lat: 47.6062, lng: -122.3321 },
-    { name: 'St. Patrick\'s Day Parade', date: 'Mar 14', url: 'https://irishclub.org/event/st-patricks-day-parade-2/', lat: 47.6097, lng: -122.3331 },
-    { name: 'Daffodil Festival Parades', date: 'Apr 4', url: 'https://thedaffodilfestival.org/event/2026-grand-floral-parade/', lat: 47.2529, lng: -122.4443 },
-    { name: 'Pirate Landing on Alki Beach', date: 'Jun 27 ~1:30 PM', url: 'https://www.seafair.org/event/pirates-landing/', lat: 47.5776, lng: -122.4185 },
-    { name: 'Greenwood Parade', date: 'TBD', url: 'https://seafairparademarshals.org/locations/greenwood-seafair-parade-2/', lat: 47.6941, lng: -122.3549 },
-    { name: 'Bothell Parade', date: 'TBD', url: 'https://www.bothellwa.gov/269/Fourthof-July-Parade-Pancake-Breakfast', lat: 47.7601, lng: -122.2054 },
-    { name: 'Tour de Terrace', date: 'TBD', url: null, lat: 47.7887, lng: -122.3179 },
-    { name: 'West Seattle Grand Parade', date: 'TBD', url: 'https://www.seafair.org/event/west-seattle-grand-parade/', lat: 47.5630, lng: -122.3869 },
-    { name: 'Kent Cornucopia Days Parade', date: 'TBD', url: 'https://kcdays.com/kent-cornucopia-grand-parade/', lat: 47.3809, lng: -122.2348 },
-    { name: 'Chinatown–International District Parade', date: 'TBD', url: 'https://www.seattlechinesechamber.org/chinatown-parade.html', lat: 47.5990, lng: -122.3236 },
-    { name: 'Des Moines Waterland Festival Parade', date: 'TBD', url: 'https://www.waterlandfestival.org/', lat: 47.4018, lng: -122.3243 },
-    { name: 'Marysville Strawberry Festival Parade', date: 'TBD', url: 'https://www.marysvillestrawberryfest.com/', lat: 48.0512, lng: -122.1771 },
-    { name: 'Seafair Torchlight Parade', date: 'Jul 25 7:30 PM', url: 'https://www.seafair.org/torchlight-parade/', lat: 47.6062, lng: -122.3351 },
-    { name: 'Mt. Si Festival Parade', date: 'Aug 15', url: 'https://www.festivalatmtsi.org/', lat: 47.4957, lng: -121.7748 },
-    { name: 'Monroe Fair Days', date: 'Aug 22', url: 'https://www.evergreenfair.org/', lat: 47.8551, lng: -122.0004 },
-    { name: 'Yakima Sunfair Parade', date: 'Sep 19', url: 'https://www.yakimaparades.com/sunfair', lat: 46.6021, lng: -120.5059 },
-    { name: 'Granite Falls Railroad Days', date: 'Oct 3', url: 'https://granitefallswa.com/events/railroad-days/', lat: 48.0846, lng: -121.9726 },
-    { name: 'Holiday Cruise', date: 'Dec 6', url: null, lat: 47.6080, lng: -122.3400 },
+    { id: 'winter-water',   name: 'Seafair Winter by the Water',         date: 'Feb 21',        url: 'https://www.seafair.org/winter-by-the-water/',                                          lat: 47.6062, lng: -122.3321 },
+    { id: 'st-pats',        name: 'St. Patrick\'s Day Parade',           date: 'Mar 14',        url: 'https://irishclub.org/event/st-patricks-day-parade-2/',                                 lat: 47.6097, lng: -122.3331 },
+    { id: 'daffodil',       name: 'Daffodil Festival Parades',           date: 'Apr 4',         url: 'https://thedaffodilfestival.org/event/2026-grand-floral-parade/',                       lat: 47.2529, lng: -122.4443 },
+    { id: 'alki-landing',   name: 'Pirate Landing on Alki Beach',        date: 'Jun 27 ~1:30 PM', url: 'https://www.seafair.org/event/pirates-landing/',                                     lat: 47.5776, lng: -122.4185 },
+    { id: 'greenwood',      name: 'Greenwood Parade',                    date: 'TBD',           url: 'https://seafairparademarshals.org/locations/greenwood-seafair-parade-2/',               lat: 47.6941, lng: -122.3549 },
+    { id: 'bothell',        name: 'Bothell Parade',                      date: 'TBD',           url: 'https://www.bothellwa.gov/269/Fourthof-July-Parade-Pancake-Breakfast',                  lat: 47.7601, lng: -122.2054 },
+    { id: 'tour-de-terrace',name: 'Mountlake Terrace — Tour de Terrace', date: 'TBD',           url: null,                                                                                    lat: 47.7887, lng: -122.3179 },
+    { id: 'west-seattle',   name: 'West Seattle Grand Parade',           date: 'TBD',           url: 'https://www.seafair.org/event/west-seattle-grand-parade/',                             lat: 47.5630, lng: -122.3869 },
+    { id: 'kent',           name: 'Kent Cornucopia Days Parade',         date: 'TBD',           url: 'https://kcdays.com/kent-cornucopia-grand-parade/',                                      lat: 47.3809, lng: -122.2348 },
+    { id: 'chinatown',      name: 'Chinatown–International District',    date: 'TBD',           url: 'https://www.seattlechinesechamber.org/chinatown-parade.html',                          lat: 47.5990, lng: -122.3236 },
+    { id: 'des-moines',     name: 'Des Moines Waterland Festival',       date: 'TBD',           url: 'https://www.waterlandfestival.org/',                                                    lat: 47.4018, lng: -122.3243 },
+    { id: 'marysville',     name: 'Marysville Strawberry Festival',      date: 'TBD',           url: 'https://www.marysvillestrawberryfest.com/',                                             lat: 48.0512, lng: -122.1771 },
+    { id: 'torchlight',     name: 'Seafair Torchlight Parade',           date: 'Jul 25 7:30 PM', url: 'https://www.seafair.org/torchlight-parade/',                                          lat: 47.6062, lng: -122.3351 },
+    { id: 'mt-si',          name: 'Mt. Si Festival Parade',              date: 'Aug 15',        url: 'https://www.festivalatmtsi.org/',                                                       lat: 47.4957, lng: -121.7748 },
+    { id: 'monroe',         name: 'Monroe Fair Days',                    date: 'Aug 22',        url: 'https://www.evergreenfair.org/',                                                        lat: 47.8551, lng: -122.0004 },
+    { id: 'yakima',         name: 'Yakima Sunfair Parade',               date: 'Sep 19',        url: 'https://www.yakimaparades.com/sunfair',                                                 lat: 46.6021, lng: -120.5059 },
+    { id: 'granite-falls',  name: 'Granite Falls Railroad Days',         date: 'Oct 3',         url: 'https://granitefallswa.com/events/railroad-days/',                                      lat: 48.0846, lng: -121.9726 },
+    { id: 'holiday-cruise', name: 'Holiday Cruise',                      date: 'Dec 6',         url: null,                                                                                    lat: 47.6080, lng: -122.3400 },
   ];
 
+  const eventMap = {};
   events.forEach(e => {
     const link = e.url ? `<a href="${e.url}" target="_blank" rel="noopener">More info ↗</a>` : '';
-    L.marker([e.lat, e.lng], { icon: markerIcon })
+    const marker = L.marker([e.lat, e.lng], { icon: markerIcon })
       .addTo(map)
       .bindPopup(`<strong>${e.name}</strong><span>${e.date}</span>${link ? '<br>' + link : ''}`);
+    eventMap[e.id] = { ...e, marker };
+  });
+
+  document.querySelectorAll('.event-map-btn[data-event-id]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ev = eventMap[btn.dataset.eventId];
+      if (!ev) return;
+      document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        map.setView([ev.lat, ev.lng], 11);
+        ev.marker.openPopup();
+      }, 500);
+    });
   });
 </script>
 </body>
