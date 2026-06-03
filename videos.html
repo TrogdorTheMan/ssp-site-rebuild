@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ale &amp; Quail Society — Our History</title>
+<title>Videos — Seattle Seafair Pirates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -18,10 +18,7 @@
     --gold:       #c8960a;
     --gold-light: #e8b420;
     --gold-pale:  #f5d97a;
-    --parchment:  #f0e6c8;
-    --parchment-dark: #d4c49a;
     --cream:      #faf6ed;
-    --rust:       #8b3a1a;
     --text-on-dark: #e8dfc8;
     --text-muted:   #8a9ab5;
     --border-gold:  rgba(200,150,10,0.3);
@@ -42,7 +39,7 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(10,22,40,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-gold);
@@ -203,50 +200,155 @@
     margin: 0 auto;
   }
 
-  /* ── ARTICLE BODY ────────────────────────────────────────────── */
-  .article-body {
-    max-width: 760px;
+  /* ── VIDEO GRID ──────────────────────────────────────────────── */
+  .video-section {
+    max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 5vw;
   }
 
-  .article-body h2 {
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-gold);
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .video-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .video-embed {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: var(--navy-light);
+  }
+
+  .video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: var(--navy-light);
+    border: 1px dashed var(--border-gold);
+    opacity: 0.5;
+  }
+
+  .video-placeholder svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--text-muted);
+  }
+
+  .video-placeholder span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .video-info {
+    padding: 1rem 1.2rem;
+  }
+
+  .video-title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
+    font-size: 1rem;
     color: var(--cream);
-    margin: 3rem 0 1rem;
-    padding-top: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .video-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── SOCIAL CTA ──────────────────────────────────────────────── */
+  .social-cta {
+    background: var(--navy-mid);
     border-top: 1px solid var(--border-gold);
+    padding: 4rem 5vw;
+    text-align: center;
   }
 
-  .article-body h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
-
-  .article-body h2 em { font-style: italic; color: var(--gold-pale); }
-
-  .article-body p {
-    margin-bottom: 1.4rem;
-    color: var(--text-on-dark);
-  }
-
-  .article-body p:last-child { margin-bottom: 0; }
-
-  /* ── PULL QUOTE ──────────────────────────────────────────────── */
-  .pull-quote {
-    border-left: 3px solid var(--gold);
-    padding: 1rem 1.5rem;
-    margin: 2.5rem 0;
-    background: rgba(200,150,10,0.07);
-  }
-
-  .pull-quote p {
+  .social-cta h2 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.3rem;
-    font-style: italic;
-    color: var(--gold-pale);
-    margin: 0;
-    line-height: 1.5;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--cream);
+    margin-bottom: 0.75rem;
   }
+
+  .social-cta h2 em { font-style: italic; color: var(--gold-pale); }
+
+  .social-cta p {
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid var(--border-gold);
+    color: var(--text-on-dark);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .social-btn:hover { border-color: var(--gold); color: var(--gold-pale); }
+  .social-btn svg { width: 16px; height: 16px; fill: currentColor; }
 
   /* ── FOOTER ──────────────────────────────────────────────────── */
   footer {
@@ -311,40 +413,13 @@
     nav { padding: 0 1rem; }
     .nav-logo { font-size: 0; gap: 0; }
     .nav-logo img { height: 36px; }
+    .video-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .img-row-2 { grid-template-columns: 1fr; }
   }
-
-  /* ── ARTICLE IMAGES ──────────────────────────────────────────── */
-  .img-caption {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .img-row {
-    display: grid;
-    gap: 6px;
-    margin: 2rem 0;
-  }
-
-  .img-row-2 { grid-template-columns: 1fr 1fr; }
-
-  .img-row img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    border: 1px solid var(--border-gold);
-  }
-
-  .img-row-portrait img { aspect-ratio: 3/4; }
 </style>
 </head>
 <body>
@@ -415,41 +490,93 @@
 
 <!-- ── PAGE HEADER ────────────────────────────────────────────────── -->
 <header class="page-header">
-  <p class="eyebrow">Our History</p>
-  <h1>The Ale &amp; <em>Quail Society</em></h1>
-  <p class="subtitle">The fraternal seed from which the Pirates grew</p>
+  <p class="eyebrow">Gallery</p>
+  <h1><em>Videos</em></h1>
+  <p class="subtitle">The Pirates in motion — landings, parades, and pure Seafair chaos</p>
 </header>
 
-<!-- ── ARTICLE ───────────────────────────────────────────────────── -->
-<main class="article-body">
+<!-- ── VIDEO GRID ────────────────────────────────────────────────── -->
+<div class="video-section">
 
-  <h2>Ale, Quail, and <em>Civic Mischief</em></h2>
-  <p>The Ale &amp; Quail Society was a fraternal circle nested within the Washington State Press Club — a group of journalists, civic boosters, and professional raconteurs who found that the best ideas arrived somewhere between the first pint and the second. The name evoked old-world gentlemen's pursuits: hunting, feasting, and the kind of rowdy fellowship that polite society barely tolerates.</p>
-  <p>In practice, the Society was less about game birds and more about good company. Members gathered regularly to debate, to plan, to celebrate Seattle's ambitions, and — crucially — to ask what role they might play in making those ambitions real.</p>
+  <div class="section-label">Featured Videos</div>
 
-  <div class="pull-quote">
-    <p>"The Ale &amp; Quail Society asked a simple question: what if the city's storytellers became its entertainers too?"</p>
+  <div class="video-grid">
+    <!-- Replace video-placeholder divs with YouTube iframes when you have video IDs.
+         Example: <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+    <div class="video-card">
+      <div class="video-embed">
+        <div class="video-placeholder">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span>Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">The Landing at Alki Beach</div>
+        <div class="video-meta">Seafair Weekend</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-embed">
+        <div class="video-placeholder">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span>Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Seafair Torchlight Parade</div>
+        <div class="video-meta">Annual Tradition</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-embed">
+        <div class="video-placeholder">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span>Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">The Moby Duck Takes the Water</div>
+        <div class="video-meta">DUKW in Action</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-embed">
+        <div class="video-placeholder">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span>Video Coming Soon</span>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Community Appearances</div>
+        <div class="video-meta">Hospitals &amp; Events</div>
+      </div>
+    </div>
   </div>
 
-  <h2>The <em>Idea That Became a Tradition</em></h2>
-  <p>When Seattle began organizing the Seafair festival in the late 1940s, members of the Ale &amp; Quail Society saw their opening. A festival needed spectacle. Spectacle needed characters. And this particular group of characters had both the audacity and the organizational muscle to pull something off.</p>
-  <p>The idea of a pirate raid — a theatrical "invasion" of the Seattle waterfront to kick off each summer's Seafair celebration — was born in these conversations. The Society requisitioned costumes, arranged for a vessel, and in 1949 put the plan into action.</p>
+</div>
 
-  <h2>The <em>First Landing</em></h2>
-  <p>The inaugural Seafair Pirate Landing was, by all accounts, a magnificent spectacle. Men in pirate regalia arrived by boat amid smoke and cannon fire, demanded the city's surrender from startled dignitaries, and sent the waterfront crowd into delighted chaos. Seattle had found its villains — and loved them immediately.</p>
-  <p>What began as a one-time stunt quickly became an institution. The Society's pirate troupe returned year after year, growing in number, in costume, and in community commitment, until the Pirates outgrew their origins and became an organization in their own right.</p>
-
-  <div class="img-row img-row-2 img-row-portrait">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Bob-Callan-240x300.jpg" alt="Bob Callan">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/johnny-closs-201x300.jpg" alt="Johnny Closs">
+<!-- ── SOCIAL CTA ─────────────────────────────────────────────────── -->
+<section class="social-cta">
+  <h2>More on <em>Social</em></h2>
+  <p>Follow the Pirates on social media for video highlights, behind-the-scenes moments, and live coverage all summer long.</p>
+  <div class="social-links">
+    <a href="https://www.facebook.com/SeattleSeafairPirates/" target="_blank" rel="noopener" class="social-btn">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a href="https://www.instagram.com/seafairpirates/" target="_blank" rel="noopener" class="social-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+    <a href="https://twitter.com/seafairpirates" target="_blank" rel="noopener" class="social-btn">
+      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L2.25 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      Twitter / X
+    </a>
   </div>
-  <p class="img-caption">Members of the Ale &amp; Quail Society</p>
-
-  <h2>The <em>Living Legacy</em></h2>
-  <p>The Ale &amp; Quail Society's greatest contribution was proving that civic life doesn't have to be solemn. The Society understood that a city's identity is shaped not just by its institutions and its industries, but by its celebrations — by the stories it tells about itself when it's having fun.</p>
-  <p>That philosophy lives on in every Seafair Pirates appearance. The swaggering, the cannon fire, the theatrical demands for surrender — all of it traces back to a group of Press Club members who believed that Seattle deserved to laugh at itself, loudly, every summer.</p>
-
-</main>
+</section>
 
 <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
 <footer>

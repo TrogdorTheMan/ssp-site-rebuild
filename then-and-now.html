@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ale &amp; Quail Society — Our History</title>
+<title>Then &amp; Now — Seattle Seafair Pirates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -18,10 +18,7 @@
     --gold:       #c8960a;
     --gold-light: #e8b420;
     --gold-pale:  #f5d97a;
-    --parchment:  #f0e6c8;
-    --parchment-dark: #d4c49a;
     --cream:      #faf6ed;
-    --rust:       #8b3a1a;
     --text-on-dark: #e8dfc8;
     --text-muted:   #8a9ab5;
     --border-gold:  rgba(200,150,10,0.3);
@@ -42,7 +39,7 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(10,22,40,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-gold);
@@ -203,49 +200,78 @@
     margin: 0 auto;
   }
 
-  /* ── ARTICLE BODY ────────────────────────────────────────────── */
-  .article-body {
-    max-width: 760px;
+  /* ── COMPARISON PAIRS ────────────────────────────────────────── */
+  .comparisons {
+    max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 5vw;
   }
 
-  .article-body h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
-    color: var(--cream);
-    margin: 3rem 0 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-gold);
+  .pair {
+    margin-bottom: 5rem;
   }
 
-  .article-body h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
-
-  .article-body h2 em { font-style: italic; color: var(--gold-pale); }
-
-  .article-body p {
-    margin-bottom: 1.4rem;
-    color: var(--text-on-dark);
+  .pair-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
-  .article-body p:last-child { margin-bottom: 0; }
-
-  /* ── PULL QUOTE ──────────────────────────────────────────────── */
-  .pull-quote {
-    border-left: 3px solid var(--gold);
-    padding: 1rem 1.5rem;
-    margin: 2.5rem 0;
-    background: rgba(200,150,10,0.07);
+  .pair-label::before,
+  .pair-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-gold);
   }
 
-  .pull-quote p {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.3rem;
-    font-style: italic;
+  .pair-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .pair-photo {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pair-photo img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border: 1px solid var(--border-gold);
+    display: block;
+  }
+
+  .pair-photo-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(10,22,40,0.85));
+    padding: 1.5rem 1rem 0.75rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--gold-pale);
-    margin: 0;
-    line-height: 1.5;
+  }
+
+  .pair-caption {
+    grid-column: 1 / -1;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 0.75rem 0 0;
+    border-top: 1px solid var(--border-gold);
+    margin-top: 6px;
   }
 
   /* ── FOOTER ──────────────────────────────────────────────────── */
@@ -316,35 +342,9 @@
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .img-row-2 { grid-template-columns: 1fr; }
+    .pair-grid { grid-template-columns: 1fr; }
+    .pair-photo img { aspect-ratio: 3/2; }
   }
-
-  /* ── ARTICLE IMAGES ──────────────────────────────────────────── */
-  .img-caption {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .img-row {
-    display: grid;
-    gap: 6px;
-    margin: 2rem 0;
-  }
-
-  .img-row-2 { grid-template-columns: 1fr 1fr; }
-
-  .img-row img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    border: 1px solid var(--border-gold);
-  }
-
-  .img-row-portrait img { aspect-ratio: 3/4; }
 </style>
 </head>
 <body>
@@ -415,41 +415,75 @@
 
 <!-- ── PAGE HEADER ────────────────────────────────────────────────── -->
 <header class="page-header">
-  <p class="eyebrow">Our History</p>
-  <h1>The Ale &amp; <em>Quail Society</em></h1>
-  <p class="subtitle">The fraternal seed from which the Pirates grew</p>
+  <p class="eyebrow">Gallery</p>
+  <h1>Then &amp; <em>Now</em></h1>
+  <p class="subtitle">Seventy-five years of Seafair — the same spirit, across the decades</p>
 </header>
 
-<!-- ── ARTICLE ───────────────────────────────────────────────────── -->
-<main class="article-body">
+<!-- ── COMPARISON PAIRS ───────────────────────────────────────────── -->
+<div class="comparisons">
 
-  <h2>Ale, Quail, and <em>Civic Mischief</em></h2>
-  <p>The Ale &amp; Quail Society was a fraternal circle nested within the Washington State Press Club — a group of journalists, civic boosters, and professional raconteurs who found that the best ideas arrived somewhere between the first pint and the second. The name evoked old-world gentlemen's pursuits: hunting, feasting, and the kind of rowdy fellowship that polite society barely tolerates.</p>
-  <p>In practice, the Society was less about game birds and more about good company. Members gathered regularly to debate, to plan, to celebrate Seattle's ambitions, and — crucially — to ask what role they might play in making those ambitions real.</p>
-
-  <div class="pull-quote">
-    <p>"The Ale &amp; Quail Society asked a simple question: what if the city's storytellers became its entertainers too?"</p>
+  <div class="pair">
+    <div class="pair-label">The Landing — Alki Beach</div>
+    <div class="pair-grid">
+      <div class="pair-photo">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/aqua-follies-of-1950-opening-sign-3.png" alt="Seafair 1950" loading="lazy">
+        <div class="pair-photo-label">Then — 1950</div>
+      </div>
+      <div class="pair-photo">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/pirates-storming-alki-1.png" alt="Pirates storming Alki Beach" loading="lazy">
+        <div class="pair-photo-label">Now</div>
+      </div>
+      <p class="pair-caption">The Pirates have staged a dramatic landing on Alki Beach every summer since the early years of Seafair — the tradition is unchanged, the crowd as eager as ever.</p>
+    </div>
   </div>
 
-  <h2>The <em>Idea That Became a Tradition</em></h2>
-  <p>When Seattle began organizing the Seafair festival in the late 1940s, members of the Ale &amp; Quail Society saw their opening. A festival needed spectacle. Spectacle needed characters. And this particular group of characters had both the audacity and the organizational muscle to pull something off.</p>
-  <p>The idea of a pirate raid — a theatrical "invasion" of the Seattle waterfront to kick off each summer's Seafair celebration — was born in these conversations. The Society requisitioned costumes, arranged for a vessel, and in 1949 put the plan into action.</p>
-
-  <h2>The <em>First Landing</em></h2>
-  <p>The inaugural Seafair Pirate Landing was, by all accounts, a magnificent spectacle. Men in pirate regalia arrived by boat amid smoke and cannon fire, demanded the city's surrender from startled dignitaries, and sent the waterfront crowd into delighted chaos. Seattle had found its villains — and loved them immediately.</p>
-  <p>What began as a one-time stunt quickly became an institution. The Society's pirate troupe returned year after year, growing in number, in costume, and in community commitment, until the Pirates outgrew their origins and became an organization in their own right.</p>
-
-  <div class="img-row img-row-2 img-row-portrait">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Bob-Callan-240x300.jpg" alt="Bob Callan">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/johnny-closs-201x300.jpg" alt="Johnny Closs">
+  <div class="pair">
+    <div class="pair-label">Neptune's Court</div>
+    <div class="pair-grid">
+      <div class="pair-photo">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/King_Neptune.png" alt="King Neptune — early Seafair" loading="lazy">
+        <div class="pair-photo-label">Then — 1950s</div>
+      </div>
+      <div class="pair-photo">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Queen-Alcyone-and-King-Neptune.png" alt="Queen Alcyone and King Neptune" loading="lazy">
+        <div class="pair-photo-label">Now</div>
+      </div>
+      <p class="pair-caption">King Neptune and Queen Alcyone have presided over the waters of Puget Sound since Seafair's founding — the costumes have evolved, the ceremony endures.</p>
+    </div>
   </div>
-  <p class="img-caption">Members of the Ale &amp; Quail Society</p>
 
-  <h2>The <em>Living Legacy</em></h2>
-  <p>The Ale &amp; Quail Society's greatest contribution was proving that civic life doesn't have to be solemn. The Society understood that a city's identity is shaped not just by its institutions and its industries, but by its celebrations — by the stories it tells about itself when it's having fun.</p>
-  <p>That philosophy lives on in every Seafair Pirates appearance. The swaggering, the cannon fire, the theatrical demands for surrender — all of it traces back to a group of Press Club members who believed that Seattle deserved to laugh at itself, loudly, every summer.</p>
+  <div class="pair">
+    <div class="pair-label">Picture Day</div>
+    <div class="pair-grid">
+      <div class="pair-photo">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/the-aqua-follies-of-1950-poster.jpg" alt="Early Seafair program" loading="lazy">
+        <div class="pair-photo-label">Then — 1950s</div>
+      </div>
+      <div class="pair-photo">
+        <img src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_8424-Picture-Day-1-scaled.jpg" alt="Picture Day 2024" loading="lazy">
+        <div class="pair-photo-label">Now — 2024</div>
+      </div>
+      <p class="pair-caption">Every year the crew assembles for an official portrait. The faces change; the costume, the camaraderie, and the slightly menacing grin do not.</p>
+    </div>
+  </div>
 
-</main>
+  <div class="pair">
+    <div class="pair-label">The Torchlight Parade</div>
+    <div class="pair-grid">
+      <div class="pair-photo">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/neptunes-flagship-burning-aug-1954.png" alt="Elliott Bay, 1954" loading="lazy">
+        <div class="pair-photo-label">Then — 1954</div>
+      </div>
+      <div class="pair-photo">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/2013-Seattle-Seafair-Torchlight-Parade-photo-By-Pir8teSteve.png" alt="Torchlight Parade 2013" loading="lazy">
+        <div class="pair-photo-label">Now — 2013</div>
+      </div>
+      <p class="pair-caption">From burning ships on Elliott Bay to marching down Fourth Avenue — the Pirates have always known how to make an entrance.</p>
+    </div>
+  </div>
+
+</div>
 
 <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
 <footer>

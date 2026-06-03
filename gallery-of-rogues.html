@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ale &amp; Quail Society — Our History</title>
+<title>Gallery of Rogues — Seattle Seafair Pirates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -18,10 +18,7 @@
     --gold:       #c8960a;
     --gold-light: #e8b420;
     --gold-pale:  #f5d97a;
-    --parchment:  #f0e6c8;
-    --parchment-dark: #d4c49a;
     --cream:      #faf6ed;
-    --rust:       #8b3a1a;
     --text-on-dark: #e8dfc8;
     --text-muted:   #8a9ab5;
     --border-gold:  rgba(200,150,10,0.3);
@@ -42,7 +39,7 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(10,22,40,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-gold);
@@ -203,50 +200,135 @@
     margin: 0 auto;
   }
 
-  /* ── ARTICLE BODY ────────────────────────────────────────────── */
-  .article-body {
-    max-width: 760px;
+  /* ── INTRO ───────────────────────────────────────────────────── */
+  .intro {
+    max-width: 700px;
     margin: 0 auto;
+    padding: 3.5rem 5vw 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  /* ── PORTRAIT GRID ───────────────────────────────────────────── */
+  .rogues-section {
+    padding: 1rem 5vw 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-gold);
+  }
+
+  .rogues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .rogue-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .rogue-portrait {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border: 1px solid var(--border-gold);
+    display: block;
+    margin-bottom: 0.6rem;
+    transition: border-color 0.2s;
+  }
+
+  .rogue-card:hover .rogue-portrait { border-color: var(--gold); }
+
+  .rogue-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--navy-mid);
+    border: 1px dashed var(--border-gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    opacity: 0.5;
+  }
+
+  .rogue-placeholder svg {
+    width: 32px;
+    height: 32px;
+    fill: var(--text-muted);
+  }
+
+  .rogue-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .rogue-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  /* ── GROUP SHOTS ─────────────────────────────────────────────── */
+  .group-section {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border-gold);
+    border-bottom: 1px solid var(--border-gold);
     padding: 4rem 5vw;
   }
 
-  .article-body h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
-    color: var(--cream);
-    margin: 3rem 0 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-gold);
+  .group-inner {
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  .article-body h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
-
-  .article-body h2 em { font-style: italic; color: var(--gold-pale); }
-
-  .article-body p {
-    margin-bottom: 1.4rem;
-    color: var(--text-on-dark);
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
   }
 
-  .article-body p:last-child { margin-bottom: 0; }
-
-  /* ── PULL QUOTE ──────────────────────────────────────────────── */
-  .pull-quote {
-    border-left: 3px solid var(--gold);
-    padding: 1rem 1.5rem;
-    margin: 2.5rem 0;
-    background: rgba(200,150,10,0.07);
+  .group-grid img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border: 1px solid var(--border-gold);
+    display: block;
+    transition: opacity 0.2s;
   }
 
-  .pull-quote p {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.3rem;
-    font-style: italic;
-    color: var(--gold-pale);
-    margin: 0;
-    line-height: 1.5;
-  }
+  .group-grid img:hover { opacity: 0.85; }
 
   /* ── FOOTER ──────────────────────────────────────────────────── */
   footer {
@@ -311,40 +393,15 @@
     nav { padding: 0 1rem; }
     .nav-logo { font-size: 0; gap: 0; }
     .nav-logo img { height: 36px; }
+    .rogues-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    .group-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .img-row-2 { grid-template-columns: 1fr; }
+    .group-grid { grid-template-columns: 1fr; }
   }
-
-  /* ── ARTICLE IMAGES ──────────────────────────────────────────── */
-  .img-caption {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .img-row {
-    display: grid;
-    gap: 6px;
-    margin: 2rem 0;
-  }
-
-  .img-row-2 { grid-template-columns: 1fr 1fr; }
-
-  .img-row img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    border: 1px solid var(--border-gold);
-  }
-
-  .img-row-portrait img { aspect-ratio: 3/4; }
 </style>
 </head>
 <body>
@@ -415,41 +472,120 @@
 
 <!-- ── PAGE HEADER ────────────────────────────────────────────────── -->
 <header class="page-header">
-  <p class="eyebrow">Our History</p>
-  <h1>The Ale &amp; <em>Quail Society</em></h1>
-  <p class="subtitle">The fraternal seed from which the Pirates grew</p>
+  <p class="eyebrow">Gallery</p>
+  <h1>Gallery of <em>Rogues</em></h1>
+  <p class="subtitle">Meet the crew — 40+ scallywags keeping Seafair tradition alive since 1949</p>
 </header>
 
-<!-- ── ARTICLE ───────────────────────────────────────────────────── -->
-<main class="article-body">
+<!-- ── INTRO ─────────────────────────────────────────────────────── -->
+<p class="intro">The Seattle Seafair Pirates are a rotating crew of community volunteers, performers, and civic champions. Each brings their own brand of roguishness to the deck — but all share a commitment to charitable service, Seafair tradition, and a healthy disrespect for Neptune's authority.</p>
 
-  <h2>Ale, Quail, and <em>Civic Mischief</em></h2>
-  <p>The Ale &amp; Quail Society was a fraternal circle nested within the Washington State Press Club — a group of journalists, civic boosters, and professional raconteurs who found that the best ideas arrived somewhere between the first pint and the second. The name evoked old-world gentlemen's pursuits: hunting, feasting, and the kind of rowdy fellowship that polite society barely tolerates.</p>
-  <p>In practice, the Society was less about game birds and more about good company. Members gathered regularly to debate, to plan, to celebrate Seattle's ambitions, and — crucially — to ask what role they might play in making those ambitions real.</p>
+<!-- ── MEMBER PORTRAITS ───────────────────────────────────────────── -->
+<div class="rogues-section">
 
-  <div class="pull-quote">
-    <p>"The Ale &amp; Quail Society asked a simple question: what if the city's storytellers became its entertainers too?"</p>
+  <div class="section-label">The Current Crew</div>
+
+  <div class="rogues-grid">
+    <!-- Portraits go here — replace placeholder divs with rogue-card + rogue-portrait img -->
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
+    <div class="rogue-card">
+      <div class="rogue-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="rogue-name">Coming Soon</div>
+      <div class="rogue-title">Pirate</div>
+    </div>
   </div>
 
-  <h2>The <em>Idea That Became a Tradition</em></h2>
-  <p>When Seattle began organizing the Seafair festival in the late 1940s, members of the Ale &amp; Quail Society saw their opening. A festival needed spectacle. Spectacle needed characters. And this particular group of characters had both the audacity and the organizational muscle to pull something off.</p>
-  <p>The idea of a pirate raid — a theatrical "invasion" of the Seattle waterfront to kick off each summer's Seafair celebration — was born in these conversations. The Society requisitioned costumes, arranged for a vessel, and in 1949 put the plan into action.</p>
+</div>
 
-  <h2>The <em>First Landing</em></h2>
-  <p>The inaugural Seafair Pirate Landing was, by all accounts, a magnificent spectacle. Men in pirate regalia arrived by boat amid smoke and cannon fire, demanded the city's surrender from startled dignitaries, and sent the waterfront crowd into delighted chaos. Seattle had found its villains — and loved them immediately.</p>
-  <p>What began as a one-time stunt quickly became an institution. The Society's pirate troupe returned year after year, growing in number, in costume, and in community commitment, until the Pirates outgrew their origins and became an organization in their own right.</p>
-
-  <div class="img-row img-row-2 img-row-portrait">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Bob-Callan-240x300.jpg" alt="Bob Callan">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/johnny-closs-201x300.jpg" alt="Johnny Closs">
+<!-- ── GROUP SHOTS ────────────────────────────────────────────────── -->
+<section class="group-section">
+  <div class="group-inner">
+    <div class="section-label" style="margin-bottom:2rem;">The Crew in Action</div>
+    <div class="group-grid">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/pirates-storming-alki-1.png" alt="The Pirates storming Alki Beach" loading="lazy">
+      <img src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_8424-Picture-Day-1-scaled.jpg" alt="Pirates picture day" loading="lazy">
+      <img src="https://seafairpirates.org/wp-content/uploads/2024/10/DSC_8664-Picture-Day-scaled.jpg" alt="Pirates picture day" loading="lazy">
+    </div>
   </div>
-  <p class="img-caption">Members of the Ale &amp; Quail Society</p>
-
-  <h2>The <em>Living Legacy</em></h2>
-  <p>The Ale &amp; Quail Society's greatest contribution was proving that civic life doesn't have to be solemn. The Society understood that a city's identity is shaped not just by its institutions and its industries, but by its celebrations — by the stories it tells about itself when it's having fun.</p>
-  <p>That philosophy lives on in every Seafair Pirates appearance. The swaggering, the cannon fire, the theatrical demands for surrender — all of it traces back to a group of Press Club members who believed that Seattle deserved to laugh at itself, loudly, every summer.</p>
-
-</main>
+</section>
 
 <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
 <footer>
