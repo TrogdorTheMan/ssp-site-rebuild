@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  img { max-width: 100%; height: auto; }
 
   :root {
     --navy:       #0a1628;
@@ -25,7 +26,7 @@
     --border-gold:  rgba(200,150,10,0.3);
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background: var(--navy);
@@ -445,6 +446,9 @@
     .nav-links.open .dropdown.open .dropdown-menu { display: block; }
     .hamburger { display: block; }
     .nav-social { display: none; }
+    nav { padding: 0 1rem; }
+    .nav-logo { font-size: 0; gap: 0; }
+    .nav-logo img { height: 36px; }
     .event-row { grid-template-columns: 100px 1fr; }
     .event-location { display: none; }
   }

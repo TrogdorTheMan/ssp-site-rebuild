@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  img { max-width: 100%; height: auto; }
 
   :root {
     --navy:       #0a1628;
@@ -26,7 +27,7 @@
     --border-gold:  rgba(200,150,10,0.3);
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background: var(--navy);
@@ -41,7 +42,7 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(10,22,40,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-gold);
@@ -807,32 +808,38 @@
       display: flex;
       flex-direction: column;
       position: fixed;
-      top: 64px; left: 0; right: 0; bottom: 0;
-      background: var(--navy);
-      padding: 2rem;
+      top: 64px; left: 0; right: 0;
+      max-height: calc(100vh - 64px);
       overflow-y: auto;
-      z-index: 99;
+      background: rgba(10,22,40,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 0.25rem 0 0.75rem;
+      z-index: 999;
       gap: 0;
     }
     .nav-links.open > li > a,
     .nav-links.open > li > button {
       height: auto;
-      line-height: normal;
-      padding: 0.9rem 0;
-      font-size: 1.2rem;
-      border-bottom: 1px solid var(--border-gold);
+      line-height: 1.4;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(200,150,10,0.1);
     }
-    .dropdown-menu {
+    .nav-links.open .dropdown-menu {
       position: static;
       border: none;
-      border-top: none;
-      background: rgba(255,255,255,0.04);
-      display: block;
-      padding-left: 1rem;
+      background: rgba(200,150,10,0.06);
+      display: none;
+      padding: 0 0 0.25rem 1rem;
     }
+    .nav-links.open .dropdown.open .dropdown-menu { display: block; }
     .hamburger { display: block; }
     .nav-social { display: none; }
     .nav-cta { display: none; }
+    nav { padding: 0 1rem; }
+    .nav-logo { font-size: 0; gap: 0; }
+    .nav-logo img { height: 36px; }
 
     .about-inner { grid-template-columns: 1fr; gap: 3rem; }
     .about-img-grid { display: none; }
@@ -847,6 +854,12 @@
     .photo-strip { grid-template-columns: 1fr 1fr; }
     .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
     .hero h1 { font-size: 2.8rem; }
+  }
+
+  @media (max-width: 480px) {
+    .photo-strip { grid-template-columns: 1fr; height: 200px; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-eyebrow { font-size: 0.6rem; }
   }
 </style>
 </head>
@@ -1193,6 +1206,18 @@
   const navLinks = document.getElementById('nav-links');
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-links .dropdown > button').forEach(btn => {
+    btn.addEventListener('click', e => {
+      if (navLinks.classList.contains('open')) {
+        e.stopPropagation();
+        const parent = btn.closest('.dropdown');
+        const isOpen = parent.classList.contains('open');
+        document.querySelectorAll('.nav-links .dropdown.open').forEach(d => d.classList.remove('open'));
+        if (!isOpen) parent.classList.add('open');
+      }
+    });
   });
 
   // Hero slideshow
