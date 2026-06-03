@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Washington State Press Club — Our History</title>
+<title>Sponsors — Seattle Seafair Pirates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -18,10 +18,7 @@
     --gold:       #c8960a;
     --gold-light: #e8b420;
     --gold-pale:  #f5d97a;
-    --parchment:  #f0e6c8;
-    --parchment-dark: #d4c49a;
     --cream:      #faf6ed;
-    --rust:       #8b3a1a;
     --text-on-dark: #e8dfc8;
     --text-muted:   #8a9ab5;
     --border-gold:  rgba(200,150,10,0.3);
@@ -42,7 +39,7 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(10,22,40,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-gold);
@@ -203,50 +200,157 @@
     margin: 0 auto;
   }
 
-  /* ── ARTICLE BODY ────────────────────────────────────────────── */
-  .article-body {
-    max-width: 760px;
-    margin: 0 auto;
+  /* ── SPONSOR TIERS ───────────────────────────────────────────── */
+  .sponsor-section {
     padding: 4rem 5vw;
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  .article-body h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
-    color: var(--cream);
-    margin: 3rem 0 1rem;
-    padding-top: 1rem;
+  .tier-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .tier-label::before,
+  .tier-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-gold);
+  }
+
+  .sponsor-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .sponsor-grid.tier-presenting { grid-template-columns: 1fr; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 4rem; }
+  .sponsor-grid.tier-gold       { grid-template-columns: repeat(2, 1fr); }
+  .sponsor-grid.tier-silver     { grid-template-columns: repeat(3, 1fr); }
+  .sponsor-grid.tier-community  { grid-template-columns: repeat(4, 1fr); }
+
+  .sponsor-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-gold);
+    background: var(--navy-mid);
+    border-radius: 4px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .sponsor-slot.filled { padding: 1.5rem 2rem; min-height: 120px; }
+  .sponsor-slot.filled img { max-height: 80px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.85; transition: opacity 0.2s; }
+  .sponsor-slot.filled:hover img { opacity: 1; }
+
+  .sponsor-slot.placeholder {
+    min-height: 120px;
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    opacity: 0.4;
+    border-style: dashed;
+  }
+
+  .sponsor-slot.placeholder span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .tier-presenting .sponsor-slot.placeholder { min-height: 180px; }
+  .tier-community  .sponsor-slot.placeholder { min-height: 80px; }
+
+  /* ── BECOME A SPONSOR ────────────────────────────────────────── */
+  .become-sponsor {
+    background: var(--navy-mid);
     border-top: 1px solid var(--border-gold);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 5rem 5vw;
+    text-align: center;
   }
 
-  .article-body h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
-
-  .article-body h2 em { font-style: italic; color: var(--gold-pale); }
-
-  .article-body p {
-    margin-bottom: 1.4rem;
-    color: var(--text-on-dark);
-  }
-
-  .article-body p:last-child { margin-bottom: 0; }
-
-  /* ── PULL QUOTE ──────────────────────────────────────────────── */
-  .pull-quote {
-    border-left: 3px solid var(--gold);
-    padding: 1rem 1.5rem;
-    margin: 2.5rem 0;
-    background: rgba(200,150,10,0.07);
-  }
-
-  .pull-quote p {
+  .become-sponsor h2 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.3rem;
-    font-style: italic;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .become-sponsor h2 em { font-style: italic; color: var(--gold-pale); }
+
+  .become-sponsor p {
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 860px;
+    margin: 0 auto 3rem;
+    text-align: left;
+  }
+
+  .benefit {
+    background: var(--navy-light);
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .benefit-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .benefit h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
     color: var(--gold-pale);
+    margin-bottom: 0.4rem;
+  }
+
+  .benefit p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
     margin: 0;
     line-height: 1.5;
   }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
 
   /* ── FOOTER ──────────────────────────────────────────────────── */
   footer {
@@ -311,48 +415,18 @@
     nav { padding: 0 1rem; }
     .nav-logo { font-size: 0; gap: 0; }
     .nav-logo img { height: 36px; }
+    .sponsor-grid.tier-gold      { grid-template-columns: 1fr; }
+    .sponsor-grid.tier-silver    { grid-template-columns: repeat(2, 1fr); }
+    .sponsor-grid.tier-community { grid-template-columns: repeat(2, 1fr); }
+    .benefits-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .img-row-2, .img-row-3 { grid-template-columns: 1fr; }
+    .sponsor-grid.tier-silver    { grid-template-columns: 1fr; }
+    .sponsor-grid.tier-community { grid-template-columns: repeat(2, 1fr); }
   }
-
-  /* ── ARTICLE IMAGES ──────────────────────────────────────────── */
-  .article-img {
-    width: 100%;
-    display: block;
-    margin: 2rem 0 0.4rem;
-    border: 1px solid var(--border-gold);
-  }
-
-  .img-caption {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .img-row {
-    display: grid;
-    gap: 6px;
-    margin: 2rem 0;
-  }
-
-  .img-row-2 { grid-template-columns: 1fr 1fr; }
-
-  .img-row img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    border: 1px solid var(--border-gold);
-  }
-
-  .img-row-portrait img { aspect-ratio: 3/4; }
-  .img-row-landscape img { aspect-ratio: 4/3; }
 </style>
 </head>
 <body>
@@ -395,9 +469,9 @@
     <li class="dropdown">
       <button>Gallery ▾</button>
       <ul class="dropdown-menu">
-        <li><a href="#">Gallery of Rogues</a></li>
-        <li><a href="#">Then and Now</a></li>
-        <li><a href="#">Videos</a></li>
+        <li><a href="gallery-of-rogues.html">Gallery of Rogues</a></li>
+        <li><a href="then-and-now.html">Then and Now</a></li>
+        <li><a href="videos.html">Videos</a></li>
       </ul>
     </li>
     <li><a href="sponsors.html">Sponsors</a></li>
@@ -423,46 +497,69 @@
 
 <!-- ── PAGE HEADER ────────────────────────────────────────────────── -->
 <header class="page-header">
-  <p class="eyebrow">Our History</p>
-  <h1>The Washington State <em>Press Club</em></h1>
-  <p class="subtitle">The civic cradle that launched Seattle's most beloved scoundrels</p>
+  <p class="eyebrow">Community Partners</p>
+  <h1>Our <em>Sponsors</em></h1>
+  <p class="subtitle">The generous partners who make 75+ years of Seafair tradition possible</p>
 </header>
 
-<!-- ── ARTICLE ───────────────────────────────────────────────────── -->
-<main class="article-body">
+<!-- ── SPONSOR TIERS ──────────────────────────────────────────────── -->
+<div class="sponsor-section">
 
-  <h2>A Gathering Place for <em>Seattle's Storytellers</em></h2>
-  <p>Long before the Pirates fired their first cannon, there was the Washington State Press Club — a gathering of journalists, editors, columnists, and civic-minded Seattleites who believed that a city's character was forged as much in fellowship as in headlines.</p>
-  <p>Founded in the early twentieth century, the Press Club served as a hub for the people who shaped Seattle's public conversation. Members shared leads, debated the news of the day, and cultivated the kind of camaraderie that only forms when storytellers find each other.</p>
-
-  <img class="article-img" src="https://seafairpirates.org/wp-content/uploads/2023/05/WAPressClub01.jpg" alt="Washington State Press Club">
-  <p class="img-caption">The Washington State Press Club</p>
-
-  <div class="pull-quote">
-    <p>"From the Press Club's halls came the idea that Seattle deserved a celebration as bold and irreverent as its own frontier spirit."</p>
+  <div class="tier-label">Presenting Sponsor</div>
+  <div class="sponsor-grid tier-presenting">
+    <div class="sponsor-slot placeholder">
+      <span>Your Logo Here</span>
+    </div>
   </div>
 
-  <h2>The <em>Ale &amp; Quail Society</em></h2>
-  <p>Within the Press Club there thrived a particularly spirited subgroup: the Ale &amp; Quail Society. Named with a nod to the gentlemen's pursuits of drink and sport, the Society was less concerned with news and more concerned with merriment — civic merriment, to be precise.</p>
-  <p>It was from this inner circle that the idea of a pirate troupe first took shape. Members of the Ale &amp; Quail Society recognized in the nascent Seafair festival an opportunity: a city eager to celebrate, a waterfront begging for drama, and a group of willing reprobates ready to provide both.</p>
-
-  <div class="img-row img-row-2 img-row-portrait">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/PressClubLogo-870x1024-400x470.jpg" alt="Press Club Logo">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/JackGordon-AleAndQuail-209x300.jpg" alt="Jack Gordon, Ale and Quail Society">
+  <div class="tier-label">Gold Sponsors</div>
+  <div class="sponsor-grid tier-gold">
+    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
+    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
   </div>
 
-  <h2>The <em>Founding Raid</em></h2>
-  <p>In 1949, members of the Press Club's Ale &amp; Quail Society took to the water. Costumed, cannon-equipped, and entirely unrepentant, they staged the first Seafair Pirate Landing on the Seattle waterfront. The raid was a sensation. City officials "surrendered" with theatrical flourish, and the crowd demanded an encore.</p>
-  <p>The Press Club had handed Seattle something it didn't know it needed: a band of lovable villains willing to show up every year, cause a scene, and remind the city not to take itself too seriously.</p>
+  <div class="tier-label">Silver Sponsors</div>
+  <div class="sponsor-grid tier-silver">
+    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
+    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
+    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
+  </div>
 
-  <img class="article-img" src="https://seafairpirates.org/wp-content/uploads/2023/05/PressClub-DC.jpg" alt="Press Club in Washington D.C.">
-  <p class="img-caption">The Press Club delegation in Washington D.C.</p>
+  <div class="tier-label">Community Sponsors</div>
+  <div class="sponsor-grid tier-community">
+    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
+    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
+    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
+    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
+  </div>
 
-  <h2>A Legacy <em>That Outlasted the Club</em></h2>
-  <p>As the decades passed and the formal structure of the Washington State Press Club evolved, the Pirates grew into their own independent organization. But the spirit of the Press Club — civic engagement, sharp wit, and a deep belief in the power of a good story told well — remains embedded in the Pirates' DNA to this day.</p>
-  <p>Every landing, every hospital visit, every Torchlight Parade appearance carries the echo of those early Press Club members who decided, in 1949, that Seattle needed pirates.</p>
+</div>
 
-</main>
+<!-- ── BECOME A SPONSOR ───────────────────────────────────────────── -->
+<section class="become-sponsor" id="become-a-sponsor">
+  <h2>Become a <em>Sponsor</em></h2>
+  <p>Join a tradition that reaches tens of thousands of Seattleites every summer. The Seattle Seafair Pirates make dozens of community appearances annually — from hospitals and nursing homes to neighborhood parades and the Seafair Weekend finale.</p>
+
+  <div class="benefits-grid">
+    <div class="benefit">
+      <span class="benefit-icon">⚓</span>
+      <h3>Community Reach</h3>
+      <p>Your brand alongside one of Seattle's most beloved civic institutions, active since 1949.</p>
+    </div>
+    <div class="benefit">
+      <span class="benefit-icon">🏴‍☠️</span>
+      <h3>Event Presence</h3>
+      <p>Logo placement at Seafair events, parades, and appearances throughout the summer season.</p>
+    </div>
+    <div class="benefit">
+      <span class="benefit-icon">🌊</span>
+      <h3>Digital Visibility</h3>
+      <p>Featured on this website and in social media coverage reaching the Seafair audience.</p>
+    </div>
+  </div>
+
+  <a href="index.html#contact" class="btn-primary">Get In Touch</a>
+</section>
 
 <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
 <footer>
@@ -489,8 +586,8 @@
       <h4>Explore</h4>
       <ul>
         <li><a href="2026-destinations.html">2026 Destinations</a></li>
-        <li><a href="#">Gallery of Rogues</a></li>
-        <li><a href="#">Videos</a></li>
+        <li><a href="gallery-of-rogues.html">Gallery of Rogues</a></li>
+        <li><a href="videos.html">Videos</a></li>
         <li><a href="sponsors.html">Our Sponsors</a></li>
       </ul>
     </div>
