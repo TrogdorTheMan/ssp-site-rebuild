@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seattle Seafair Pirates — Our History</title>
+<title>2026 Destinations — Seattle Seafair Pirates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -18,9 +19,7 @@
     --gold-light: #e8b420;
     --gold-pale:  #f5d97a;
     --parchment:  #f0e6c8;
-    --parchment-dark: #d4c49a;
     --cream:      #faf6ed;
-    --rust:       #8b3a1a;
     --text-on-dark: #e8dfc8;
     --text-muted:   #8a9ab5;
     --border-gold:  rgba(200,150,10,0.3);
@@ -50,7 +49,6 @@
     align-items: center;
     justify-content: space-between;
     height: 64px;
-    transition: background 0.3s;
   }
 
   .nav-logo {
@@ -202,82 +200,134 @@
     margin: 0 auto;
   }
 
-  /* ── ARTICLE BODY ────────────────────────────────────────────── */
-  .article-body {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 4rem 5vw;
+  /* ── MAP ─────────────────────────────────────────────────────── */
+  .map-section {
+    padding: 3rem 5vw;
+    border-bottom: 1px solid var(--border-gold);
   }
 
-  .article-body h2 {
+  .map-section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  #map {
+    width: 100%;
+    height: 480px;
+    border: 1px solid var(--border-gold);
+    border-radius: 2px;
+  }
+
+  /* Override Leaflet popup styles to match site theme */
+  .leaflet-popup-content-wrapper {
+    background: var(--navy-mid);
+    border: 1px solid var(--border-gold);
+    border-radius: 2px;
+    color: var(--text-on-dark);
+    font-family: 'Crimson Pro', Georgia, serif;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+
+  .leaflet-popup-tip { background: var(--navy-mid); }
+
+  .leaflet-popup-content {
+    margin: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .leaflet-popup-content strong {
+    display: block;
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .leaflet-popup-content span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .leaflet-container { background: #0d1e35; }
+
+  /* ── EVENT LIST ──────────────────────────────────────────────── */
+  .schedule-section {
+    padding: 3rem 5vw 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .schedule-section h2 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
     color: var(--cream);
-    margin: 3rem 0 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-gold);
+    margin-bottom: 2rem;
   }
 
-  .article-body h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+  .schedule-section h2 em { font-style: italic; color: var(--gold-pale); }
 
-  .article-body h2 em { font-style: italic; color: var(--gold-pale); }
+  .season-group { margin-bottom: 3rem; }
 
-  .article-body p {
-    margin-bottom: 1.4rem;
+  .season-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .event-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(200,150,10,0.08);
+  }
+
+  .event-row:last-child { border-bottom: none; }
+
+  .event-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .event-name {
+    font-size: 1rem;
     color: var(--text-on-dark);
   }
 
-  .article-body p:last-child { margin-bottom: 0; }
-
-  /* ── PULL QUOTE ──────────────────────────────────────────────── */
-  .pull-quote {
-    border-left: 3px solid var(--gold);
-    padding: 1rem 1.5rem;
-    margin: 2.5rem 0;
-    background: rgba(200,150,10,0.07);
-  }
-
-  .pull-quote p {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.3rem;
-    font-style: italic;
-    color: var(--gold-pale);
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  /* ── STAT STRIP ──────────────────────────────────────────────── */
-  .stat-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border-gold);
-    border: 1px solid var(--border-gold);
-    margin: 3rem 0;
-  }
-
-  .stat-block {
-    background: var(--navy-mid);
-    padding: 1.5rem 1rem;
-    text-align: center;
-  }
-
-  .stat-number {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2.2rem;
-    font-weight: 900;
-    color: var(--gold-light);
-    line-height: 1;
-  }
-
-  .stat-label {
+  .event-location {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 0.68rem;
     color: var(--text-muted);
-    margin-top: 0.4rem;
+    letter-spacing: 0.06em;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .event-badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    background: rgba(200,150,10,0.12);
+    border: 1px solid var(--border-gold);
+    color: var(--gold);
+    margin-left: 0.5rem;
+    vertical-align: middle;
   }
 
   /* ── FOOTER ──────────────────────────────────────────────────── */
@@ -340,13 +390,16 @@
     .nav-links.open .dropdown.open .dropdown-menu { display: block; }
     .hamburger { display: block; }
     .nav-social { display: none; }
-    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .event-row { grid-template-columns: 100px 1fr; }
+    .event-location { display: none; }
   }
 
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    #map { height: 320px; }
+    .event-row { grid-template-columns: 1fr; gap: 0.2rem; }
+    .event-date { font-size: 0.68rem; }
   }
 </style>
 </head>
@@ -418,54 +471,140 @@
 
 <!-- ── PAGE HEADER ────────────────────────────────────────────────── -->
 <header class="page-header">
-  <p class="eyebrow">Our History</p>
-  <h1>Seattle <em>Seafair Pirates</em></h1>
-  <p class="subtitle">Seattle's high-humored crew since 1949</p>
+  <p class="eyebrow">Destinations</p>
+  <h1>2026 <em>Appearances</em></h1>
+  <p class="subtitle">Where to find Seattle's most notorious crew this year</p>
 </header>
 
-<!-- ── ARTICLE ───────────────────────────────────────────────────── -->
-<main class="article-body">
+<!-- ── MAP ───────────────────────────────────────────────────────── -->
+<section class="map-section">
+  <div id="map"></div>
+</section>
 
-  <h2>Origins</h2>
-  <p>The Seattle Seafair Pirates were born in 1949 out of the Washington State Press Club's Ale &amp; Quail Society — a fraternal circle of journalists, editors, and civic boosters who believed Seattle deserved a proper festival, and that a festival deserved proper pirates.</p>
-  <p>That first year, a small band of members donned costumes, requisitioned a boat, and staged a "raid" on the Seattle waterfront to kick off the inaugural Seafair celebration. The crowd went wild. A tradition was born.</p>
+<!-- ── SCHEDULE ──────────────────────────────────────────────────── -->
+<section class="schedule-section">
+  <h2>Full <em>Schedule</em></h2>
 
-  <div class="pull-quote">
-    <p>"Despite their bad-guy image, the Pirates make dozens of appearances annually to hospitals, nursing homes, and community events."</p>
-  </div>
-
-  <h2>Who <em>We Are</em></h2>
-  <p>Today the Seattle Seafair Pirates are an elite troupe of 40+ scallywags and swashbucklers who have become synonymous with Seafair revelry. Members come from all walks of life — tradespeople, teachers, musicians, doctors — united by a capacity for mischief and a commitment to community service.</p>
-  <p>New Pirates are carefully selected based on their ability to mix well with the public and their unique musical or theatrical talent. Prospects serve a full year before earning their colors, ensuring they can safely entertain and interact with people of all ages.</p>
-
-  <div class="stat-strip">
-    <div class="stat-block">
-      <div class="stat-number">1949</div>
-      <div class="stat-label">Founded</div>
-    </div>
-    <div class="stat-block">
-      <div class="stat-number">40+</div>
-      <div class="stat-label">Active Pirates</div>
-    </div>
-    <div class="stat-block">
-      <div class="stat-number">75+</div>
-      <div class="stat-label">Years of Service</div>
-    </div>
-    <div class="stat-block">
-      <div class="stat-number">20+</div>
-      <div class="stat-label">Events per Year</div>
+  <div class="season-group">
+    <p class="season-label">Winter</p>
+    <div class="event-row">
+      <span class="event-date">Feb 21</span>
+      <span class="event-name">Seafair Winter by the Water</span>
+      <span class="event-location">Seattle Waterfront</span>
     </div>
   </div>
 
-  <h2>Community <em>Service</em></h2>
-  <p>For all the swagger and cannon fire, the Pirates are at heart a service organization. Throughout the year they visit hospitals, nursing homes, schools, and neighborhood celebrations — bringing music, laughter, and the peculiar comfort that comes from being accosted by a friendly pirate.</p>
-  <p>During the height of Seafair in July and August, the crew appears at several events and parades each day, from the Grand Torchlight Parade to waterfront landings that still draw thousands of spectators to the shores of Elliott Bay.</p>
+  <div class="season-group">
+    <p class="season-label">Spring</p>
+    <div class="event-row">
+      <span class="event-date">Mar 14</span>
+      <span class="event-name">St. Patrick's Day Parade</span>
+      <span class="event-location">Seattle</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">Apr 4</span>
+      <span class="event-name">Daffodil Festival Parades</span>
+      <span class="event-location">Tacoma / Puyallup / Sumner / Orting</span>
+    </div>
+  </div>
 
-  <h2>The <em>Landing</em></h2>
-  <p>The Pirates' signature event is the annual Landing — a mock invasion of the Seattle waterfront that opens Seafair each summer. Arriving by boat with cannon smoke, battle cries, and no small amount of theatrical menace, the Pirates "capture" the city from local dignitaries and declare Seafair officially underway.</p>
-  <p>The tradition has continued unbroken since 1949, making it one of the longest-running civic spectacles in the Pacific Northwest.</p>
+  <div class="season-group">
+    <p class="season-label">Summer</p>
+    <div class="event-row">
+      <span class="event-date">Jun 27</span>
+      <span class="event-name">Pirate Landing on Alki Beach <span class="event-badge">~1:30 PM</span></span>
+      <span class="event-location">West Seattle</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">TBD</span>
+      <span class="event-name">Greenwood Parade</span>
+      <span class="event-location">Seattle</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">TBD</span>
+      <span class="event-name">Bothell Parade</span>
+      <span class="event-location">Bothell</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">TBD</span>
+      <span class="event-name">Mountlake Terrace Parade</span>
+      <span class="event-location">Mountlake Terrace</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">TBD</span>
+      <span class="event-name">West Seattle Parade</span>
+      <span class="event-location">West Seattle</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">TBD</span>
+      <span class="event-name">Kent Parade</span>
+      <span class="event-location">Kent</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">TBD</span>
+      <span class="event-name">Chinatown–International District</span>
+      <span class="event-location">Seattle</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">TBD</span>
+      <span class="event-name">Des Moines Parade</span>
+      <span class="event-location">Des Moines</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">TBD</span>
+      <span class="event-name">Marysville Parade</span>
+      <span class="event-location">Marysville</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">Jul 23</span>
+      <span class="event-name">Davy Jones Banquet <span class="event-badge">Members Only</span></span>
+      <span class="event-location">Seattle</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">Jul 25</span>
+      <span class="event-name">Seafair Torchlight Parade <span class="event-badge">7:30 PM</span></span>
+      <span class="event-location">Seattle</span>
+    </div>
+  </div>
 
-</main>
+  <div class="season-group">
+    <p class="season-label">Fall</p>
+    <div class="event-row">
+      <span class="event-date">Aug 15</span>
+      <span class="event-name">Mt. Si Festival Parade</span>
+      <span class="event-location">North Bend</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">Aug 22</span>
+      <span class="event-name">Monroe Fair Days</span>
+      <span class="event-location">Monroe</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">Sep 19</span>
+      <span class="event-name">Yakima Sunfair Parade</span>
+      <span class="event-location">Yakima</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">Oct 3</span>
+      <span class="event-name">Granite Falls Railroad Days</span>
+      <span class="event-location">Granite Falls</span>
+    </div>
+  </div>
+
+  <div class="season-group">
+    <p class="season-label">Holiday</p>
+    <div class="event-row">
+      <span class="event-date">Dec 6</span>
+      <span class="event-name">Holiday Cruise</span>
+      <span class="event-location">Seattle</span>
+    </div>
+    <div class="event-row">
+      <span class="event-date">Dec 12</span>
+      <span class="event-name">Holiday Dinner Party</span>
+      <span class="event-location">Seattle</span>
+    </div>
+  </div>
+</section>
 
 <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
 <footer>
@@ -481,8 +620,9 @@
       <h4>Our History</h4>
       <ul>
         <li><a href="seattle-seafair-pirates.html">Seattle Seafair Pirates</a></li>
-        <li><a href="the-moby-duck.html">The Moby Duck</a></li>
+        <li><a href="washington-state-press-club.html">The Washington State Press Club</a></li>
         <li><a href="ale-and-quail-society.html">Ale &amp; Quail Society</a></li>
+        <li><a href="the-moby-duck.html">The Moby Duck</a></li>
         <li><a href="captain-kidd.html">Captain Kidd</a></li>
         <li><a href="our-history-in-pictures.html">History in Pictures</a></li>
       </ul>
@@ -511,7 +651,9 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLcE=" crossorigin=""></script>
 <script>
+  // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.getElementById('nav-links');
   hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
@@ -520,6 +662,54 @@
       e.stopPropagation();
       btn.closest('.dropdown').classList.toggle('open');
     });
+  });
+
+  // Map
+  const map = L.map('map', {
+    center: [47.6, -122.1],
+    zoom: 8,
+    zoomControl: true,
+    scrollWheelZoom: false
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 19
+  }).addTo(map);
+
+  const markerIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:14px;height:14px;background:#c8960a;border:2px solid #e8b420;border-radius:50%;box-shadow:0 0 8px rgba(200,150,10,0.6);"></div>',
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
+    popupAnchor: [0, -10]
+  });
+
+  const events = [
+    { name: 'Seafair Winter by the Water', date: 'Feb 21', lat: 47.6062, lng: -122.3321 },
+    { name: 'St. Patrick\'s Day Parade', date: 'Mar 14', lat: 47.6097, lng: -122.3331 },
+    { name: 'Daffodil Festival Parades', date: 'Apr 4', lat: 47.2529, lng: -122.4443 },
+    { name: 'Pirate Landing on Alki Beach', date: 'Jun 27', lat: 47.5776, lng: -122.4185 },
+    { name: 'Greenwood Parade', date: 'TBD', lat: 47.6941, lng: -122.3549 },
+    { name: 'Bothell Parade', date: 'TBD', lat: 47.7601, lng: -122.2054 },
+    { name: 'Mountlake Terrace Parade', date: 'TBD', lat: 47.7887, lng: -122.3179 },
+    { name: 'West Seattle Parade', date: 'TBD', lat: 47.5630, lng: -122.3869 },
+    { name: 'Kent Parade', date: 'TBD', lat: 47.3809, lng: -122.2348 },
+    { name: 'Chinatown–International District', date: 'TBD', lat: 47.5990, lng: -122.3236 },
+    { name: 'Des Moines Parade', date: 'TBD', lat: 47.4018, lng: -122.3243 },
+    { name: 'Marysville Parade', date: 'TBD', lat: 48.0512, lng: -122.1771 },
+    { name: 'Seafair Torchlight Parade', date: 'Jul 25', lat: 47.6062, lng: -122.3351 },
+    { name: 'Mt. Si Festival Parade', date: 'Aug 15', lat: 47.4957, lng: -121.7748 },
+    { name: 'Monroe Fair Days', date: 'Aug 22', lat: 47.8551, lng: -122.0004 },
+    { name: 'Yakima Sunfair Parade', date: 'Sep 19', lat: 46.6021, lng: -120.5059 },
+    { name: 'Granite Falls Railroad Days', date: 'Oct 3', lat: 48.0846, lng: -121.9726 },
+    { name: 'Holiday Cruise', date: 'Dec 6', lat: 47.6080, lng: -122.3400 },
+  ];
+
+  events.forEach(e => {
+    L.marker([e.lat, e.lng], { icon: markerIcon })
+      .addTo(map)
+      .bindPopup(`<strong>${e.name}</strong><span>${e.date}</span>`);
   });
 </script>
 </body>
