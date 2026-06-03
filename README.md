@@ -14,7 +14,7 @@ The Seattle Seafair Pirates are a Seattle civic organization founded in 1949, be
 
 ## About the Developer
 
-This project is maintained by **TrogdorTheMan** — an IT professional and active member of the Seattle Seafair Pirates. Beyond delivering a better website for the organization, this project is also a hands-on exploration of how AI tools can be practically applied to real-world application and web development work. Building alongside AI (specifically Claude Code) is as much a part of the goal as the site itself.
+This project is maintained by **TrogdorTheMan** — an IT professional and active member of the Seattle Seafair Pirates. Beyond delivering a better website for the organization, this project is also a hands-on exploration of how AI tools can be practically applied in real-world scenarios and web development work. Building alongside AI (specifically Claude Code) is as much a part of the goal as the site itself.
 
 ## Tech Stack
 
