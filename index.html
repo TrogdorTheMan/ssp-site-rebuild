@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seattle Seafair Pirates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0a1628;
+    --navy-mid:   #0f2040;
+    --navy-light: #1a3358;
+    --gold:       #c8960a;
+    --gold-light: #e8b420;
+    --gold-pale:  #f5d97a;
+    --parchment:  #f0e6c8;
+    --parchment-dark: #d4c49a;
+    --cream:      #faf6ed;
+    --rust:       #8b3a1a;
+    --text-on-dark: #e8dfc8;
+    --text-muted:   #8a9ab5;
+    --border-gold:  rgba(200,150,10,0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-on-dark);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVIGATION ─────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    transition: background 0.3s;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--gold-light);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .nav-logo img {
+    height: 40px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+  }
+
+  .nav-links li { position: relative; }
+
+  .nav-links > li > a,
+  .nav-links > li > button {
+    display: block;
+    padding: 0 1rem;
+    height: 64px;
+    line-height: 64px;
+    text-decoration: none;
+    color: var(--text-on-dark);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .nav-links > li > a:hover,
+  .nav-links > li > button:hover { color: var(--gold-light); }
+
+  .dropdown { position: relative; }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    background: var(--navy-mid);
+    border: 1px solid var(--border-gold);
+    border-top: 2px solid var(--gold);
+    min-width: 220px;
+    list-style: none;
+    z-index: 200;
+  }
+
+  .dropdown:hover .dropdown-menu { display: block; }
+
+  .dropdown-menu li a {
+    display: block;
+    padding: 0.6rem 1.2rem;
+    color: var(--text-on-dark);
+    text-decoration: none;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(200,150,10,0.1);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .dropdown-menu li a:hover {
+    background: var(--navy-light);
+    color: var(--gold-pale);
+  }
+
+  .nav-cta {
+    margin-left: 1rem;
+    padding: 0.45rem 1.2rem !important;
+    height: auto !important;
+    line-height: normal !important;
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    font-weight: 700 !important;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    font-size: 0.85rem !important;
+    text-transform: uppercase;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  .nav-social {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-left: 1.5rem;
+  }
+
+  .nav-social a {
+    color: var(--text-muted);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-social a:hover { color: var(--gold-light); }
+
+  .nav-social svg { width: 18px; height: 18px; fill: currentColor; }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-on-dark);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .hamburger svg { width: 24px; height: 24px; fill: currentColor; }
+
+  /* ── HERO ────────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-slides {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  .hero-slide.active { opacity: 1; }
+
+  .hero-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,22,40,0.2) 0%,
+      rgba(10,22,40,0.1) 40%,
+      rgba(10,22,40,0.75) 75%,
+      rgba(10,22,40,0.95) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 4rem 5vw 5rem;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 48px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--cream);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-pale);
+  }
+
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--text-on-dark);
+    opacity: 0.85;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.8rem 2.2rem;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 0.8rem 2.2rem;
+    border: 1px solid rgba(200,150,10,0.5);
+    color: var(--gold-pale);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    background: rgba(200,150,10,0.08);
+  }
+
+  .hero-indicators {
+    position: absolute;
+    bottom: 2.2rem;
+    right: 5vw;
+    z-index: 3;
+    display: flex;
+    gap: 8px;
+  }
+
+  .hero-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(232,180,32,0.3);
+    border: 1px solid rgba(232,180,32,0.5);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .hero-dot.active { background: var(--gold-light); }
+
+  /* ── SECTION SHARED ──────────────────────────────────────────── */
+  section { padding: 6rem 5vw; }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 32px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold-pale); }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border-gold);
+    margin: 0;
+  }
+
+  /* ── ABOUT ───────────────────────────────────────────────────── */
+  .about {
+    background: var(--navy-mid);
+  }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1200px;
+  }
+
+  .about-text p {
+    color: var(--text-on-dark);
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+    opacity: 0.9;
+  }
+
+  .about-text p:first-of-type {
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--parchment);
+    opacity: 1;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: var(--border-gold);
+    border: 1px solid var(--border-gold);
+    margin-top: 2rem;
+    align-self: start;
+  }
+
+  .stat-block {
+    background: var(--navy-mid);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--gold-pale);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .about-img-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 6px;
+  }
+
+  .about-img-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(20%) contrast(1.05);
+    transition: filter 0.3s;
+  }
+
+  .about-img-grid img:hover { filter: sepia(0%) contrast(1.1); }
+
+  .about-img-grid .img-tall {
+    grid-row: 1 / 3;
+  }
+
+  /* ── UPCOMING EVENTS ─────────────────────────────────────────── */
+  .events { background: var(--navy); }
+
+  .events-inner { max-width: 1200px; }
+
+  .events-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .event-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border-gold);
+    border: 1px solid var(--border-gold);
+    margin-bottom: 2rem;
+  }
+
+  .event-card {
+    background: var(--navy-mid);
+    padding: 1.8rem;
+    transition: background 0.2s;
+  }
+
+  .event-card:hover { background: var(--navy-light); }
+
+  .event-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.7rem;
+  }
+
+  .event-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .event-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .events-cta-row {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* ── PHOTO STRIP ─────────────────────────────────────────────── */
+  .photo-strip {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 320px;
+    overflow: hidden;
+  }
+
+  .strip-photo {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .strip-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.3s;
+    filter: sepia(30%) brightness(0.8);
+  }
+
+  .strip-photo:hover img {
+    transform: scale(1.06);
+    filter: sepia(0%) brightness(1);
+  }
+
+  .strip-photo-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(10,22,40,0.9) 0%, transparent 100%);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-pale);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .strip-photo:hover .strip-photo-label { opacity: 1; }
+
+  /* ── JOIN / CANDIDATE ────────────────────────────────────────── */
+  .join {
+    background: var(--navy-mid);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .join::before {
+    content: '☠';
+    position: absolute;
+    right: 5vw;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20rem;
+    opacity: 0.03;
+    color: var(--gold);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .join-inner {
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .join-inner p {
+    font-size: 1.15rem;
+    color: var(--text-on-dark);
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  /* ── CONTACT ─────────────────────────────────────────────────── */
+  .contact { background: var(--navy); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    max-width: 1100px;
+    align-items: start;
+  }
+
+  .contact-info p {
+    color: var(--text-on-dark);
+    font-size: 1.05rem;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .contact-detail strong { color: var(--text-on-dark); }
+
+  .contact-social {
+    display: flex;
+    gap: 16px;
+    margin-top: 2rem;
+  }
+
+  .contact-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-gold);
+    color: var(--text-muted);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    border-radius: 3px;
+  }
+
+  .contact-social a:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    background: rgba(200,150,10,0.08);
+  }
+
+  .contact-social svg { width: 18px; height: 18px; fill: currentColor; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-group label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--navy-light);
+    border: 1px solid rgba(200,150,10,0.2);
+    color: var(--text-on-dark);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-group select option { background: var(--navy-mid); }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  /* ── SPONSORS ────────────────────────────────────────────────── */
+  .sponsors {
+    background: var(--navy-mid);
+    padding: 4rem 5vw;
+    text-align: center;
+  }
+
+  .sponsors p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .sponsors-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    opacity: 0.5;
+  }
+
+  .sponsor-placeholder {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--border-gold);
+    border-radius: 3px;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────────── */
+  footer {
+    background: #060f1c;
+    border-top: 1px solid var(--border-gold);
+    padding: 3rem 5vw 2rem;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand .nav-logo {
+    margin-bottom: 1rem;
+    display: inline-flex;
+  }
+
+  .footer-brand p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .footer-col h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col ul li { margin-bottom: 0.5rem; }
+
+  .footer-col ul li a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--gold-pale); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border-gold);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ── MOBILE ──────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 64px; left: 0; right: 0; bottom: 0;
+      background: var(--navy);
+      padding: 2rem;
+      overflow-y: auto;
+      z-index: 99;
+      gap: 0;
+    }
+    .nav-links.open > li > a,
+    .nav-links.open > li > button {
+      height: auto;
+      line-height: normal;
+      padding: 0.9rem 0;
+      font-size: 1.2rem;
+      border-bottom: 1px solid var(--border-gold);
+    }
+    .dropdown-menu {
+      position: static;
+      border: none;
+      border-top: none;
+      background: rgba(255,255,255,0.04);
+      display: block;
+      padding-left: 1rem;
+    }
+    .hamburger { display: block; }
+    .nav-social { display: none; }
+    .nav-cta { display: none; }
+
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .about-img-grid { display: none; }
+    .about-stats { margin-top: 1.5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .photo-strip { grid-template-columns: 1fr 1fr; height: 220px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .photo-strip { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero h1 { font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="/" class="nav-logo">
+    <img src="images/shared/logo.png" alt="Seafair Pirates logo">
+    Seattle Seafair Pirates
+  </a>
+
+  <ul class="nav-links" id="nav-links">
+    <li class="dropdown">
+      <button>Our History ▾</button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Seattle Seafair Pirates</a></li>
+        <li><a href="#">The Washington State Press Club</a></li>
+        <li><a href="#">The Ale &amp; Quail Society</a></li>
+        <li><a href="#">The Moby Duck</a></li>
+        <li><a href="#">Captain Kidd — Past to Present</a></li>
+        <li><a href="#">History in Pictures</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Pirates Log</a></li>
+    <li class="dropdown">
+      <button>Destinations ▾</button>
+      <ul class="dropdown-menu">
+        <li><a href="#">2026 Destinations</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <button>Seafair ▾</button>
+      <ul class="dropdown-menu">
+        <li><a href="#">The Birth of Seafair</a></li>
+        <li><a href="#">Signature Seafair Events</a></li>
+        <li><a href="#">Seafair Volunteer Groups</a></li>
+        <li><a href="#">More Seafair Traditions</a></li>
+        <li><a href="#">The Legend of Seafair (1953)</a></li>
+        <li><a href="#">The Legend of Seafair (1954)</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <button>Gallery ▾</button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Gallery of Rogues</a></li>
+        <li><a href="#">Then and Now</a></li>
+        <li><a href="#">Videos</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Sponsors</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" class="nav-cta">Join the Crew</a></li>
+    <li class="nav-social">
+      <a href="https://twitter.com/seafairpirates" target="_blank" rel="noopener" aria-label="Twitter">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L2.25 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/SeattleSeafairPirates/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/seafairpirates/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+    </li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <svg viewBox="0 0 24 24"><rect y="4" width="24" height="2" rx="1"/><rect y="11" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+  </button>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<section class="hero" id="top">
+  <div class="hero-slides" id="hero-slides">
+    <div class="hero-slide active" style="background-image: url('images/pages/home/hero-stpats-2026.jpg')"></div>
+    <div class="hero-slide" style="background-image: url('images/pages/home/hero-slide-1.jpg')"></div>
+    <div class="hero-slide" style="background-image: url('images/pages/home/hero-slide-2.jpg')"></div>
+    <div class="hero-slide" style="background-image: url('images/pages/home/hero-slide-3.jpg')"></div>
+    <div class="hero-slide" style="background-image: url('images/pages/home/hero-slide-4.jpg')"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Seattle's most storied crew since 1949</p>
+    <h1>The Seafair <em>Pirates</em></h1>
+    <p class="hero-sub">BANG! A blast of black smoke and the smell of gunpowder fill the air — Seattle's swashbucklers have arrived.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book the Pirates</a>
+      <a href="#about" class="btn-outline">Our Story</a>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=TTRPVCM2ZUGC8" target="_blank" rel="noopener" class="btn-outline">Donate</a>
+    </div>
+  </div>
+
+  <div class="hero-indicators" id="hero-indicators"></div>
+</section>
+
+<hr class="divider">
+
+<!-- ── ABOUT ─────────────────────────────────────────────────────── -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <p class="section-label">Who we are</p>
+      <h2 class="section-title">Seattle's High-Humored <em>Heist</em></h2>
+      <p>The Seattle Seafair Pirates are an elite troupe of 40+ scallywags and swashbucklers who have become synonymous with Seafair revelry. Originally members of the Washington State Press Club's Ale &amp; Quail Society, the Pirates banded together in 1949 to promote Seattle and Seafair while having fun and serving the community.</p>
+      <p>Despite their bad-guy image, the Pirates make dozens of appearances annually to hospitals, nursing homes, and community events. During the height of Seattle's Seafair celebration, they appear at several events and parades each day.</p>
+      <p>The 40+ Pirates carefully select their members based on an ability to mix well with the public and unique musical or theatrical talent — tested for a full year to ensure they can safely entertain and interact with the community.</p>
+      <a href="#" class="btn-outline" style="margin-top:0.5rem; display:inline-block;">Read our full history →</a>
+
+      <div class="about-stats">
+        <div class="stat-block">
+          <div class="stat-number">1949</div>
+          <div class="stat-label">Founded</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-number">40+</div>
+          <div class="stat-label">Active Pirates</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-number">75+</div>
+          <div class="stat-label">Years of service</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-number">20+</div>
+          <div class="stat-label">Events per year</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-img-grid">
+      <img class="img-tall" src="images/pages/home/about-1.jpg" alt="Seafair Pirates in action">
+      <img src="images/pages/home/about-2.png" alt="Pirates at Seafair">
+      <img src="images/pages/home/about-3.jpg" alt="Historical photo">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── PHOTO STRIP ────────────────────────────────────────────────── -->
+<div class="photo-strip">
+  <div class="strip-photo">
+    <img src="images/pages/home/strip-1.jpg" alt="Seafair Pirates 2023">
+    <span class="strip-photo-label">Seafair 2023</span>
+  </div>
+  <div class="strip-photo">
+    <img src="images/pages/home/strip-2.png" alt="St. Patrick's Parade 2016">
+    <span class="strip-photo-label">St. Patrick's Day 2016</span>
+  </div>
+  <div class="strip-photo">
+    <img src="images/pages/home/hero-slide-2.jpg" alt="Captain Jay Albrecht 2024">
+    <span class="strip-photo-label">Capt. Jay Albrecht 2024</span>
+  </div>
+  <div class="strip-photo">
+    <img src="images/pages/home/hero-stpats-2026.jpg" alt="St. Patrick's Parade 2026">
+    <span class="strip-photo-label">St. Patrick's Day 2026</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ── EVENTS ─────────────────────────────────────────────────────── -->
+<section class="events" id="events">
+  <div class="events-inner">
+    <div class="events-header">
+      <div>
+        <p class="section-label">2026 Schedule</p>
+        <h2 class="section-title">Upcoming <em>Destinations</em></h2>
+      </div>
+      <a href="#" class="btn-outline">Full schedule →</a>
+    </div>
+
+    <div class="event-cards">
+      <div class="event-card">
+        <p class="event-date">June 20 · 5:00 PM</p>
+        <p class="event-name">Marysville Strawberry Festival Grand Parade</p>
+        <p class="event-meta">76th Street NE, Marysville</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">June 27 · 1:30 PM</p>
+        <p class="event-name">Alki Beach Landing</p>
+        <p class="event-meta">Alki Beach Bathhouse, West Seattle</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">June 27 · 6:30 PM</p>
+        <p class="event-name">Greenwood Parade</p>
+        <p class="event-meta">Greenwood Ave N from 67th to 80th</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">July 4 · Noon</p>
+        <p class="event-name">Bothell Fourth of July Parade</p>
+        <p class="event-meta">Main Street, Bothell</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">July 25 · 7:30 PM</p>
+        <p class="event-name">Seafair Torchlight Parade</p>
+        <p class="event-meta">Broad St &amp; Alaskan Way, Seattle</p>
+      </div>
+      <div class="event-card">
+        <p class="event-date">December 6 · 3:00 PM</p>
+        <p class="event-name">Seafair Holiday Cruise</p>
+        <p class="event-meta">Ending at MOHAI, South Lake Union</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── JOIN ───────────────────────────────────────────────────────── -->
+<section class="join">
+  <div class="join-inner">
+    <p class="section-label">Join the crew</p>
+    <h2 class="section-title">Think You Have <em>What It Takes?</em></h2>
+    <p>The Pirates are always on the lookout for new crew members. We seek individuals with theatrical or musical talent, a genuine love of community service, and the ability to mix well with the public. Candidates undergo a year-long vetting process — if you've got the swagger, we want to hear from you.</p>
+    <a href="#" class="btn-primary">Apply as a Candidate</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── CONTACT ────────────────────────────────────────────────────── -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <p class="section-label">Get in touch</p>
+      <h2 class="section-title">Book the <em>Pirates</em></h2>
+      <p>The Seattle Seafair Pirates are available for your event! Whether it's a parade, hospital visit, community celebration, or private event — fill out the form and we'll get back to you.</p>
+      <div class="contact-social">
+        <a href="https://twitter.com/seafairpirates" target="_blank" rel="noopener" aria-label="Twitter">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L2.25 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/SeattleSeafairPirates/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/seafairpirates/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contact-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="first_name" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="last_name" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contact-time">Best Time to Contact</label>
+        <select id="contact-time" name="best_time">
+          <option value="">Select…</option>
+          <option>Morning</option>
+          <option>Afternoon</option>
+          <option>Evening</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="align-self:flex-start; margin-top:0.5rem;">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SPONSORS ───────────────────────────────────────────────────── -->
+<section class="sponsors">
+  <p>Our generous sponsors</p>
+  <div class="sponsors-logos">
+    <span class="sponsor-placeholder">Your Logo Here</span>
+    <span class="sponsor-placeholder">Your Logo Here</span>
+    <span class="sponsor-placeholder">Your Logo Here</span>
+    <span class="sponsor-placeholder">Your Logo Here</span>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="nav-logo">
+        <img src="images/shared/logo.png" alt="Seafair Pirates logo">
+        Seafair Pirates
+      </a>
+      <p>Seattle's high-humored heist since 1949. Community servants, entertainers, and keepers of Seafair tradition.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Our History</h4>
+      <ul>
+        <li><a href="#">Seattle Seafair Pirates</a></li>
+        <li><a href="#">The Moby Duck</a></li>
+        <li><a href="#">Ale &amp; Quail Society</a></li>
+        <li><a href="#">Captain Kidd</a></li>
+        <li><a href="#">History in Pictures</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#">2026 Destinations</a></li>
+        <li><a href="#">Pirates Log</a></li>
+        <li><a href="#">Gallery of Rogues</a></li>
+        <li><a href="#">Videos</a></li>
+        <li><a href="#">Our Sponsors</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Get Involved</h4>
+      <ul>
+        <li><a href="#">Join the Crew</a></li>
+        <li><a href="#contact">Book for Your Event</a></li>
+        <li><a href="https://www.paypal.com/donate/?hosted_button_id=TTRPVCM2ZUGC8" target="_blank" rel="noopener">Donate</a></li>
+        <li><a href="https://sharepoint.com" target="_blank" rel="noopener">Members Area ↗</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Seattle Seafair Pirates. All rights reserved.</p>
+    <p>Made with ⚓ in Seattle, WA</p>
+  </div>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Hero slideshow
+  const slides = document.querySelectorAll('.hero-slide');
+  const indicatorsContainer = document.getElementById('hero-indicators');
+  let current = 0;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    indicatorsContainer.appendChild(dot);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    indicatorsContainer.children[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    indicatorsContainer.children[current].classList.add('active');
+  }
+
+  setInterval(() => goTo((current + 1) % slides.length), 5000);
+
+  // Navbar scroll opacity
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      navbar.style.background = 'rgba(10,22,40,0.97)';
+    } else {
+      navbar.style.background = 'rgba(10,22,40,0.92)';
+    }
+  });
+</script>
+</body>
+</html>
