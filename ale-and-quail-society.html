@@ -312,7 +312,35 @@
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .img-row-2 { grid-template-columns: 1fr; }
   }
+
+  /* ── ARTICLE IMAGES ──────────────────────────────────────────── */
+  .img-caption {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .img-row {
+    display: grid;
+    gap: 6px;
+    margin: 2rem 0;
+  }
+
+  .img-row-2 { grid-template-columns: 1fr 1fr; }
+
+  .img-row img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border: 1px solid var(--border-gold);
+  }
+
+  .img-row-portrait img { aspect-ratio: 3/4; }
 </style>
 </head>
 <body>
@@ -406,6 +434,12 @@
   <h2>The <em>First Landing</em></h2>
   <p>The inaugural Seafair Pirate Landing was, by all accounts, a magnificent spectacle. Men in pirate regalia arrived by boat amid smoke and cannon fire, demanded the city's surrender from startled dignitaries, and sent the waterfront crowd into delighted chaos. Seattle had found its villains — and loved them immediately.</p>
   <p>What began as a one-time stunt quickly became an institution. The Society's pirate troupe returned year after year, growing in number, in costume, and in community commitment, until the Pirates outgrew their origins and became an organization in their own right.</p>
+
+  <div class="img-row img-row-2 img-row-portrait">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Bob-Callan-240x300.jpg" alt="Bob Callan">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/johnny-closs-201x300.jpg" alt="Johnny Closs">
+  </div>
+  <p class="img-caption">Members of the Ale &amp; Quail Society</p>
 
   <h2>The <em>Living Legacy</em></h2>
   <p>The Ale &amp; Quail Society's greatest contribution was proving that civic life doesn't have to be solemn. The Society understood that a city's identity is shaped not just by its institutions and its industries, but by its celebrations — by the stories it tells about itself when it's having fun.</p>

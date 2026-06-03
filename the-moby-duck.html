@@ -312,7 +312,43 @@
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .img-row-2, .img-row-3 { grid-template-columns: 1fr; }
   }
+
+  /* ── ARTICLE IMAGES ──────────────────────────────────────────── */
+  .article-img {
+    width: 100%;
+    display: block;
+    margin: 2rem 0 0.4rem;
+    border: 1px solid var(--border-gold);
+  }
+
+  .img-caption {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .img-row {
+    display: grid;
+    gap: 6px;
+    margin: 2rem 0;
+  }
+
+  .img-row-2 { grid-template-columns: 1fr 1fr; }
+  .img-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .img-row img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border: 1px solid var(--border-gold);
+  }
+
+  .img-row-landscape img { aspect-ratio: 4/3; }
 </style>
 </head>
 <body>
@@ -399,6 +435,11 @@
     <p>"There is no more Seattle a sight than the Moby Duck emerging from Elliott Bay with a crew of pirates and absolutely no intention of stopping."</p>
   </div>
 
+  <div class="img-row img-row-2 img-row-landscape">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Current-Moby-Duck-3-front-view-800x532.png" alt="Moby Duck front view">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Current-Moby-Duck-800x533.png" alt="Moby Duck side view">
+  </div>
+
   <h2>The <em>Heart of the Landing</em></h2>
   <p>Every year, the Moby Duck is central to the Seafair Pirate Landing — the ceremonial "invasion" of Seattle that opens the Seafair festival. The Duck carries the Pirates from the water onto the shore in a single unbroken charge, collapsing the boundary between sea and land the way only a DUKW can.</p>
   <p>For generations of Seattle children, spotting the Moby Duck churning through the water toward the waterfront has been the signal that summer has truly arrived. The vehicle's ungainly magnificence — too big for a boat, too weird for a truck — perfectly matches the Pirates' own brand of theatrical excess.</p>
@@ -406,6 +447,16 @@
   <h2>A Vehicle With <em>History</em></h2>
   <p>DUKWs were built by the thousands during World War II, ferrying troops and supplies from ships to shore in every major amphibious operation of the Pacific and European theaters. After the war, many found second lives as tourist vehicles, disaster-response craft, and — in at least one celebrated case — a pirate ship on wheels in Seattle, Washington.</p>
   <p>The Moby Duck has been maintained, restored, and kept seaworthy by generations of Pirates who understand that the vehicle is not just transportation but symbol: the physical proof that the Seafair Pirates go where they say they're going, rain or shine, wave or no wave.</p>
+
+  <img class="article-img" src="https://seafairpirates.org/wp-content/uploads/2023/06/moby-duck-galleon-bg-800x533.png" alt="Moby Duck decorated as Spanish Galleon">
+  <p class="img-caption">The Moby Duck dressed as a Spanish Galleon</p>
+
+  <div class="img-row img-row-3 img-row-landscape">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/1954-Moby-Duck.jpg" alt="Moby Duck 1954">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Coast-Guard-DUKW.jpg" alt="Coast Guard DUKW">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Another-Spanish-Galleon-Moby-Duck.jpg" alt="Spanish Galleon Moby Duck">
+  </div>
+  <p class="img-caption">Historical DUKW vehicles and early Moby Duck appearances</p>
 
   <h2>More Than a <em>Machine</em></h2>
   <p>Ask any Pirate about the Moby Duck and you'll hear stories — mechanical crises narrowly averted, landings in weather that would give a sensible captain pause, the particular smell of a DUKW engine warming up on a July morning. The vehicle has its own personality, its own demands, and its own devoted caretakers.</p>

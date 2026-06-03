@@ -312,7 +312,37 @@
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .captain-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
   }
+
+  /* ── ARTICLE IMAGES ──────────────────────────────────────────── */
+  .img-caption {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .captain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 6px;
+    margin: 2rem 0;
+  }
+
+  .captain-grid img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--border-gold);
+    filter: brightness(0.9);
+    transition: filter 0.2s;
+  }
+
+  .captain-grid img:hover { filter: brightness(1.05); }
 </style>
 </head>
 <body>
@@ -410,6 +440,88 @@
   <h2>A <em>Living Office</em></h2>
   <p>The line of Captains Kidd stretches back to 1949 — a succession of Seattleites who believed that their city deserved to be entertained, served, and occasionally invaded by a crew of lovable scoundrels every summer. Each name in that line is a chapter in the story of Seafair itself.</p>
   <p>The current Captain Kidd continues that tradition, leading a crew of 40+ Pirates into hospitals, parades, and waterfront landings with the same conviction that animated the first raid three-quarters of a century ago: that laughter is a public good, and someone has to provide it.</p>
+
+  <h2>The <em>Captains, 1950 – Present</em></h2>
+  <p>Every man who has held the title of Captain Kidd.</p>
+  <div class="captain-grid">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-01.jpg" alt="Captain Kidd 1950" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-02.jpg" alt="Captain Kidd 1951" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-03.jpg" alt="Captain Kidd 1952" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-04.jpg" alt="Captain Kidd 1952" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-05-1.jpg" alt="Captain Kidd 1953" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-06.jpg" alt="Captain Kidd 1954" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-07.jpg" alt="Captain Kidd 1955" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-08.jpg" alt="Captain Kidd 1956" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-09.jpg" alt="Captain Kidd 1957" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-10.jpg" alt="Captain Kidd 1958" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-11.jpg" alt="Captain Kidd 1959" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-12.jpg" alt="Captain Kidd 1960" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-13.jpg" alt="Captain Kidd 1961" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-14.jpg" alt="Captain Kidd 1962" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-15.jpg" alt="Captain Kidd 1963" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-16.jpg" alt="Captain Kidd 1964" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-17.jpg" alt="Captain Kidd 1965" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-18.jpg" alt="Captain Kidd 1966" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-19.jpg" alt="Captain Kidd 1967" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-20.jpg" alt="Captain Kidd 1968" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-21.jpg" alt="Captain Kidd 1969" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-22.jpg" alt="Captain Kidd 1970" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-23.jpg" alt="Captain Kidd 1971" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-24.jpg" alt="Captain Kidd 1972" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-25.jpg" alt="Captain Kidd 1973" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-26.jpg" alt="Captain Kidd 1974" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-27.jpg" alt="Captain Kidd 1975" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-28.jpg" alt="Captain Kidd 1976" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-29.jpg" alt="Captain Kidd 1977" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-30.jpg" alt="Captain Kidd 1978" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-31.jpg" alt="Captain Kidd 1979" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-32.jpg" alt="Captain Kidd 1980" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-33.jpg" alt="Captain Kidd 1981" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-34.jpg" alt="Captain Kidd 1982" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-35.jpg" alt="Captain Kidd 1983" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-36.jpg" alt="Captain Kidd 1984" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-37.jpg" alt="Captain Kidd 1985" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-38.jpg" alt="Captain Kidd 1986" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-39.jpg" alt="Captain Kidd 1987" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-40.jpg" alt="Captain Kidd 1988" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-41.jpg" alt="Captain Kidd 1989" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-42.jpg" alt="Captain Kidd 1990" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-43.jpg" alt="Captain Kidd 1991" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-44.jpg" alt="Captain Kidd 1992" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-45.jpg" alt="Captain Kidd 1993" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-46.jpg" alt="Captain Kidd 1994" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-47.jpg" alt="Captain Kidd 1995" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-48.jpg" alt="Captain Kidd 1996" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-49.jpg" alt="Captain Kidd 1997" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-50.jpg" alt="Captain Kidd 1998" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-51.jpg" alt="Captain Kidd 1999" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-52.jpg" alt="Captain Kidd 2000" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-53.jpg" alt="Captain Kidd 2001" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-54.jpg" alt="Captain Kidd 2002" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-55.jpg" alt="Captain Kidd 2003" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-56.jpg" alt="Captain Kidd 2004" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-57.jpg" alt="Captain Kidd 2005" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-58.jpg" alt="Captain Kidd 2006" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-59.jpg" alt="Captain Kidd 2007" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-60.jpg" alt="Captain Kidd 2008" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-61.jpg" alt="Captain Kidd 2009" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-62.jpg" alt="Captain Kidd 2010" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-63.jpg" alt="Captain Kidd 2011" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-64.jpg" alt="Captain Kidd 2012" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-65.jpg" alt="Captain Kidd 2013" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-66.jpg" alt="Captain Kidd 2014" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-67.jpg" alt="Captain Kidd 2015" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-68.jpg" alt="Captain Kidd 2016" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-69.jpg" alt="Captain Kidd 2017" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-70.jpg" alt="Captain Kidd 2018" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-71.jpg" alt="Captain Kidd 2019" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-72.jpg" alt="Captain Kidd 2020" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/CK-73.jpg" alt="Captain Kidd 2021" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Michael-Brown.jpg" alt="Captain Kidd 2022 — Michael Brown" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/08/lee-burns-2023.jpg" alt="Captain Kidd 2023 — Lee Burns" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2024/07/Jay-DD-Albrecht.jpg" alt="Captain Kidd 2024 — Jay Albrecht" onerror="this.closest('div').style.display='none'" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2025/08/Al-Owl-Donahue-2025-Captain-Kidd.png" alt="Captain Kidd 2025 — Al Donahue" onerror="this.closest('div').style.display='none'" loading="lazy">
+  </div>
 
 </main>
 

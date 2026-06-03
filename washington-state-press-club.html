@@ -312,7 +312,43 @@
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .img-row-2, .img-row-3 { grid-template-columns: 1fr; }
   }
+
+  /* ── ARTICLE IMAGES ──────────────────────────────────────────── */
+  .article-img {
+    width: 100%;
+    display: block;
+    margin: 2rem 0 0.4rem;
+    border: 1px solid var(--border-gold);
+  }
+
+  .img-caption {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .img-row {
+    display: grid;
+    gap: 6px;
+    margin: 2rem 0;
+  }
+
+  .img-row-2 { grid-template-columns: 1fr 1fr; }
+
+  .img-row img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border: 1px solid var(--border-gold);
+  }
+
+  .img-row-portrait img { aspect-ratio: 3/4; }
+  .img-row-landscape img { aspect-ratio: 4/3; }
 </style>
 </head>
 <body>
@@ -395,6 +431,9 @@
   <p>Long before the Pirates fired their first cannon, there was the Washington State Press Club — a gathering of journalists, editors, columnists, and civic-minded Seattleites who believed that a city's character was forged as much in fellowship as in headlines.</p>
   <p>Founded in the early twentieth century, the Press Club served as a hub for the people who shaped Seattle's public conversation. Members shared leads, debated the news of the day, and cultivated the kind of camaraderie that only forms when storytellers find each other.</p>
 
+  <img class="article-img" src="https://seafairpirates.org/wp-content/uploads/2023/05/WAPressClub01.jpg" alt="Washington State Press Club">
+  <p class="img-caption">The Washington State Press Club</p>
+
   <div class="pull-quote">
     <p>"From the Press Club's halls came the idea that Seattle deserved a celebration as bold and irreverent as its own frontier spirit."</p>
   </div>
@@ -403,9 +442,17 @@
   <p>Within the Press Club there thrived a particularly spirited subgroup: the Ale &amp; Quail Society. Named with a nod to the gentlemen's pursuits of drink and sport, the Society was less concerned with news and more concerned with merriment — civic merriment, to be precise.</p>
   <p>It was from this inner circle that the idea of a pirate troupe first took shape. Members of the Ale &amp; Quail Society recognized in the nascent Seafair festival an opportunity: a city eager to celebrate, a waterfront begging for drama, and a group of willing reprobates ready to provide both.</p>
 
+  <div class="img-row img-row-2 img-row-portrait">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/PressClubLogo-870x1024-400x470.jpg" alt="Press Club Logo">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/05/JackGordon-AleAndQuail-209x300.jpg" alt="Jack Gordon, Ale and Quail Society">
+  </div>
+
   <h2>The <em>Founding Raid</em></h2>
   <p>In 1949, members of the Press Club's Ale &amp; Quail Society took to the water. Costumed, cannon-equipped, and entirely unrepentant, they staged the first Seafair Pirate Landing on the Seattle waterfront. The raid was a sensation. City officials "surrendered" with theatrical flourish, and the crowd demanded an encore.</p>
   <p>The Press Club had handed Seattle something it didn't know it needed: a band of lovable villains willing to show up every year, cause a scene, and remind the city not to take itself too seriously.</p>
+
+  <img class="article-img" src="https://seafairpirates.org/wp-content/uploads/2023/05/PressClub-DC.jpg" alt="Press Club in Washington D.C.">
+  <p class="img-caption">The Press Club delegation in Washington D.C.</p>
 
   <h2>A Legacy <em>That Outlasted the Club</em></h2>
   <p>As the decades passed and the formal structure of the Washington State Press Club evolved, the Pirates grew into their own independent organization. But the spirit of the Press Club — civic engagement, sharp wit, and a deep belief in the power of a good story told well — remains embedded in the Pirates' DNA to this day.</p>
