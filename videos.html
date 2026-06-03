@@ -255,34 +255,7 @@
     border: none;
   }
 
-  .video-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    background: var(--navy-light);
-    border: 1px dashed var(--border-gold);
-    opacity: 0.5;
-  }
-
-  .video-placeholder svg {
-    width: 40px;
-    height: 40px;
-    fill: var(--text-muted);
-  }
-
-  .video-placeholder span {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .video-info {
+.video-info {
     padding: 1rem 1.2rem;
   }
 
@@ -501,57 +474,63 @@
   <div class="section-label">Featured Videos</div>
 
   <div class="video-grid">
-    <!-- Replace video-placeholder divs with YouTube iframes when you have video IDs.
-         Example: <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
     <div class="video-card">
       <div class="video-embed">
-        <div class="video-placeholder">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          <span>Video Coming Soon</span>
-        </div>
+        <iframe src="https://www.youtube.com/embed/Q0WrD4yrjcQ" title="More Than Mischief: The Seafair Pirates Story" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <div class="video-title">The Landing at Alki Beach</div>
-        <div class="video-meta">Seafair Weekend</div>
+        <div class="video-title">More Than Mischief: The Seafair Pirates Story</div>
+        <div class="video-meta">2025 — Full feature</div>
       </div>
     </div>
 
     <div class="video-card">
       <div class="video-embed">
-        <div class="video-placeholder">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          <span>Video Coming Soon</span>
-        </div>
+        <iframe src="https://www.youtube.com/embed/MQCoA-UPnxk" title="Seafair Pirates' 2024 Alki Arrival" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <div class="video-title">Seafair Torchlight Parade</div>
-        <div class="video-meta">Annual Tradition</div>
+        <div class="video-title">Seafair Pirates' 2024 Alki Arrival</div>
+        <div class="video-meta">2024 — West Seattle Blog</div>
       </div>
     </div>
 
     <div class="video-card">
       <div class="video-embed">
-        <div class="video-placeholder">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          <span>Video Coming Soon</span>
-        </div>
+        <iframe src="https://www.youtube.com/embed/YcRKvib9qC8" title="Becoming a Pirate — KING 5 Evening" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <div class="video-title">The Moby Duck Takes the Water</div>
-        <div class="video-meta">DUKW in Action</div>
+        <div class="video-title">Becoming a Pirate with the Seafair Pirates</div>
+        <div class="video-meta">2019 — KING 5 Evening</div>
       </div>
     </div>
 
     <div class="video-card">
       <div class="video-embed">
-        <div class="video-placeholder">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          <span>Video Coming Soon</span>
-        </div>
+        <iframe src="https://www.youtube.com/embed/pJd6KI-J86Y" title="Hanging Out with the Seafair Pirates — FOX 13" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-info">
-        <div class="video-title">Community Appearances</div>
-        <div class="video-meta">Hospitals &amp; Events</div>
+        <div class="video-title">Hanging Out with the Seafair Pirates</div>
+        <div class="video-meta">2023 — FOX 13 Seattle</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/zg_-V6buUnA" title="Riding with the Seattle Seafair Pirates" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Riding with the Seattle Seafair Pirates</div>
+        <div class="video-meta">2013 — Duck boat cruise</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/gXH1diHHGrI" title="Seafair Pirates at 2024 West Seattle Grand Parade" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Seafair Pirates at the West Seattle Grand Parade</div>
+        <div class="video-meta">2024 — West Seattle Blog</div>
       </div>
     </div>
   </div>
