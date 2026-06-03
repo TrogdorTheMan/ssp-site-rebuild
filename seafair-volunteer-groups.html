@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ale &amp; Quail Society — Our History</title>
+<title>Seafair Volunteer Groups</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(10,22,40,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-gold);
@@ -210,42 +210,9 @@
     padding: 4rem 5vw;
   }
 
-  .article-body h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
-    color: var(--cream);
-    margin: 3rem 0 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-gold);
-  }
-
-  .article-body h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
-
-  .article-body h2 em { font-style: italic; color: var(--gold-pale); }
-
   .article-body p {
     margin-bottom: 1.4rem;
     color: var(--text-on-dark);
-  }
-
-  .article-body p:last-child { margin-bottom: 0; }
-
-  /* ── PULL QUOTE ──────────────────────────────────────────────── */
-  .pull-quote {
-    border-left: 3px solid var(--gold);
-    padding: 1rem 1.5rem;
-    margin: 2.5rem 0;
-    background: rgba(200,150,10,0.07);
-  }
-
-  .pull-quote p {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.3rem;
-    font-style: italic;
-    color: var(--gold-pale);
-    margin: 0;
-    line-height: 1.5;
   }
 
   /* ── FOOTER ──────────────────────────────────────────────────── */
@@ -316,35 +283,55 @@
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .img-row-2 { grid-template-columns: 1fr; }
+    .group-grid { grid-template-columns: 1fr 1fr; }
   }
 
-  /* ── ARTICLE IMAGES ──────────────────────────────────────────── */
-  .img-caption {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    text-align: center;
+  /* ── GROUP CARDS ─────────────────────────────────────────────── */
+  .group-section {
+    padding: 3rem 5vw 4rem;
   }
 
-  .img-row {
+  .group-intro {
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.05rem;
+    color: var(--text-on-dark);
+  }
+
+  .group-grid {
     display: grid;
-    gap: 6px;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  .img-row-2 { grid-template-columns: 1fr 1fr; }
-
-  .img-row img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
+  .group-card {
+    background: var(--navy-mid);
     border: 1px solid var(--border-gold);
+    padding: 1.5rem;
   }
 
-  .img-row-portrait img { aspect-ratio: 3/4; }
+  .group-card img {
+    height: 70px;
+    width: auto;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .group-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .group-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
 </style>
 </head>
 <body>
@@ -387,12 +374,12 @@
     <li class="dropdown">
       <button>Gallery ▾</button>
       <ul class="dropdown-menu">
-        <li><a href="#">Gallery of Rogues</a></li>
-        <li><a href="#">Then and Now</a></li>
-        <li><a href="#">Videos</a></li>
+        <li><a href="gallery-of-rogues.html">Gallery of Rogues</a></li>
+        <li><a href="then-and-now.html">Then and Now</a></li>
+        <li><a href="videos.html">Videos</a></li>
       </ul>
     </li>
-    <li><a href="#">Sponsors</a></li>
+    <li><a href="sponsors.html">Sponsors</a></li>
     <li><a href="index.html#contact">Contact</a></li>
     <li><a href="#" class="nav-cta">Join the Crew</a></li>
     <li class="nav-social">
@@ -415,40 +402,50 @@
 
 <!-- ── PAGE HEADER ────────────────────────────────────────────────── -->
 <header class="page-header">
-  <p class="eyebrow">Our History</p>
-  <h1>The Ale &amp; <em>Quail Society</em></h1>
-  <p class="subtitle">The fraternal seed from which the Pirates grew</p>
+  <p class="eyebrow">Seafair</p>
+  <h1>Seafair Volunteer <em>Groups</em></h1>
+  <p class="subtitle">The families who make Seafair run</p>
 </header>
 
-<!-- ── ARTICLE ───────────────────────────────────────────────────── -->
-<main class="article-body">
+<!-- ── MAIN CONTENT ──────────────────────────────────────────────── -->
+<main>
+  <section class="group-section">
+    <p class="group-intro">Seafair's volunteer families are its backbone — goodwill ambassadors who participate in events and community service projects year-round, giving the festival its human heart.</p>
 
-  <h2>Ale, Quail, and <em>Civic Mischief</em></h2>
-  <p>The Ale &amp; Quail Society was a fraternal circle nested within the Washington State Press Club — a group of journalists, civic boosters, and professional raconteurs who found that the best ideas arrived somewhere between the first pint and the second. The name evoked old-world gentlemen's pursuits: hunting, feasting, and the kind of rowdy fellowship that polite society barely tolerates.</p>
-  <p>In practice, the Society was less about game birds and more about good company. Members gathered regularly to debate, to plan, to celebrate Seattle's ambitions, and — crucially — to ask what role they might play in making those ambitions real.</p>
+    <div class="group-grid">
 
-  <div class="pull-quote">
-    <p>"The Ale &amp; Quail Society asked a simple question: what if the city's storytellers became its entertainers too?"</p>
-  </div>
+      <div class="group-card">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Seattle-Seafair-Pirates-Icon-150x150.png" alt="Seattle Seafair Pirates logo" loading="lazy">
+        <h3>Seattle Seafair Pirates</h3>
+        <p>~40 members led by Captain Kidd, known for pirate personas, charitable hospital and nursing home visits, and promoting Seafair since 1949.</p>
+      </div>
 
-  <h2>The <em>Idea That Became a Tradition</em></h2>
-  <p>When Seattle began organizing the Seafair festival in the late 1940s, members of the Ale &amp; Quail Society saw their opening. A festival needed spectacle. Spectacle needed characters. And this particular group of characters had both the audacity and the organizational muscle to pull something off.</p>
-  <p>The idea of a pirate raid — a theatrical "invasion" of the Seattle waterfront to kick off each summer's Seafair celebration — was born in these conversations. The Society requisitioned costumes, arranged for a vessel, and in 1949 put the plan into action.</p>
+      <div class="group-card">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/seattle-seafair-clowns-icon-150x150.png" alt="Seattle Seafair Clowns logo" loading="lazy">
+        <h3>Seattle Seafair Clowns</h3>
+        <p>Participants in community festivals, parades, nursing home and hospital visits, and fundraising — spreading cheer throughout the year.</p>
+      </div>
 
-  <h2>The <em>First Landing</em></h2>
-  <p>The inaugural Seafair Pirate Landing was, by all accounts, a magnificent spectacle. Men in pirate regalia arrived by boat amid smoke and cannon fire, demanded the city's surrender from startled dignitaries, and sent the waterfront crowd into delighted chaos. Seattle had found its villains — and loved them immediately.</p>
-  <p>What began as a one-time stunt quickly became an institution. The Society's pirate troupe returned year after year, growing in number, in costume, and in community commitment, until the Pirates outgrew their origins and became an organization in their own right.</p>
+      <div class="group-card">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/boat-club-logo-300x171.png" alt="Seafair Boat Club logo" loading="lazy">
+        <h3>Seafair Boat Club</h3>
+        <p>Supports water-oriented activities including the Milk Carton Derby on Green Lake, hydroplane races on Lake Washington, and the Special People's Holiday Cruise.</p>
+      </div>
 
-  <div class="img-row img-row-2 img-row-portrait">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Bob-Callan-240x300.jpg" alt="Bob Callan">
-    <img src="https://seafairpirates.org/wp-content/uploads/2023/06/johnny-closs-201x300.jpg" alt="Johnny Closs">
-  </div>
-  <p class="img-caption">Members of the Ale &amp; Quail Society</p>
+      <div class="group-card">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Seafair-Commodores-Icon-1-150x150.png" alt="Seattle Seafair Commodores logo" loading="lazy">
+        <h3>Seattle Seafair Commodores</h3>
+        <p>Active year-round at Northwest and British Columbia festivals and community service projects.</p>
+      </div>
 
-  <h2>The <em>Living Legacy</em></h2>
-  <p>The Ale &amp; Quail Society's greatest contribution was proving that civic life doesn't have to be solemn. The Society understood that a city's identity is shaped not just by its institutions and its industries, but by its celebrations — by the stories it tells about itself when it's having fun.</p>
-  <p>That philosophy lives on in every Seafair Pirates appearance. The swaggering, the cannon fire, the theatrical demands for surrender — all of it traces back to a group of Press Club members who believed that Seattle deserved to laugh at itself, loudly, every summer.</p>
+      <div class="group-card">
+        <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Seafair-PArade-Marshals-Icon-150x150.png" alt="Seafair Parade Marshals logo" loading="lazy">
+        <h3>Seafair Parade Marshals</h3>
+        <p>Assist with planning, promotion, and production of the Torchlight Parade and over 20 community parades each year.</p>
+      </div>
 
+    </div>
+  </section>
 </main>
 
 <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
@@ -476,9 +473,9 @@
       <h4>Explore</h4>
       <ul>
         <li><a href="2026-destinations.html">2026 Destinations</a></li>
-        <li><a href="#">Gallery of Rogues</a></li>
-        <li><a href="#">Videos</a></li>
-        <li><a href="#">Our Sponsors</a></li>
+        <li><a href="gallery-of-rogues.html">Gallery of Rogues</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="sponsors.html">Our Sponsors</a></li>
       </ul>
     </div>
     <div class="footer-col">
