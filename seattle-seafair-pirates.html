@@ -343,9 +343,28 @@
     .footer-brand { grid-column: 1 / -1; }
   }
 
-  /* ── NAV TIER 3: hamburger ───────────────────────────────────── */
+    /* ── NAV TIER 3: hamburger ───────────────────────────────────── */
   @media (max-width: 800px) {
-    .nav-links { display: none; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links > li { display: none; }
+    .nav-links > li:nth-child(2),
+    .nav-links > li:nth-child(6) { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: var(--navy-mid);
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-gold);
+      z-index: 99;
+    }
+    .nav-links.open > li { display: block; }
+    .nav-links.open > li > a,
+    .nav-links.open > li > button { height: auto; line-height: 1.4; padding: 0.75rem 1.5rem; }
+    .nav-links.open .dropdown-menu { position: static; border: none; background: var(--navy-light); display: none; }
+    .nav-links.open .dropdown.open .dropdown-menu { display: block; }
+    .hamburger { display: block; }
+    nav { padding: 0 1rem; }
+  }
     .nav-links.open {
       display: flex; flex-direction: column;
       position: fixed; top: 64px; left: 0; right: 0;
