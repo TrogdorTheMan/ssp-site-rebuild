@@ -762,9 +762,10 @@
       if (!ev) return;
       document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => {
-        map.setView([ev.lat, ev.lng], 11);
-        ev.marker.openPopup();
-      }, 500);
+        map.invalidateSize();
+        map.once('moveend', () => ev.marker.openPopup());
+        map.flyTo([ev.lat, ev.lng], 11);
+      }, 600);
     });
   });
 </script>
