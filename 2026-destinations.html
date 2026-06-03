@@ -294,6 +294,20 @@
 
   .event-row:last-child { border-bottom: none; }
 
+  .event-sub {
+    padding-left: 1.25rem;
+    border-bottom-style: dashed;
+  }
+
+  .event-sub .event-date {
+    color: var(--text-muted);
+    font-size: 0.68rem;
+  }
+
+  .event-sub .event-map-btn {
+    font-size: 0.92rem;
+  }
+
   .event-date {
     font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
@@ -544,8 +558,28 @@
     </div>
     <div class="event-row">
       <span class="event-date">Apr 4</span>
-      <span class="event-name"><button class="event-map-btn" data-event-id="daffodil">Daffodil Festival Parades</button><a class="event-ext-link" href="https://thedaffodilfestival.org/event/2026-grand-floral-parade/" target="_blank" rel="noopener">More info ↗</a></span>
-      <span class="event-location">Tacoma / Puyallup / Sumner / Orting</span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="daffodil-all">Daffodil Festival Grand Floral Parade</button><a class="event-ext-link" href="https://thedaffodilfestival.org/event/2026-grand-floral-parade/" target="_blank" rel="noopener">More info ↗</a></span>
+      <span class="event-location">Pierce County</span>
+    </div>
+    <div class="event-row event-sub">
+      <span class="event-date">10:15 AM</span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="daffodil-tacoma">Tacoma</button></span>
+      <span class="event-location">Pacific Ave</span>
+    </div>
+    <div class="event-row event-sub">
+      <span class="event-date">12:45 PM</span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="daffodil-puyallup">Puyallup</button></span>
+      <span class="event-location">4th &amp; Meeker</span>
+    </div>
+    <div class="event-row event-sub">
+      <span class="event-date">2:30 PM</span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="daffodil-sumner">Sumner</button></span>
+      <span class="event-location">Main Street</span>
+    </div>
+    <div class="event-row event-sub">
+      <span class="event-date">5:00 PM</span>
+      <span class="event-name"><button class="event-map-btn" data-event-id="daffodil-orting">Orting</button></span>
+      <span class="event-location">Washington Ave</span>
     </div>
   </div>
 
@@ -729,7 +763,10 @@
   const events = [
     { id: 'winter-water',   name: 'Seafair Winter by the Water',         date: 'Feb 21',        url: 'https://www.seafair.org/winter-by-the-water/',                                          lat: 47.6062, lng: -122.3321 },
     { id: 'st-pats',        name: 'St. Patrick\'s Day Parade',           date: 'Mar 14',        url: 'https://irishclub.org/event/st-patricks-day-parade-2/',                                 lat: 47.6097, lng: -122.3331 },
-    { id: 'daffodil',       name: 'Daffodil Festival Parades',           date: 'Apr 4',         url: 'https://thedaffodilfestival.org/event/2026-grand-floral-parade/',                       lat: 47.2529, lng: -122.4443 },
+    { id: 'daffodil-tacoma',   name: 'Daffodil Festival — Tacoma',   date: 'Apr 4, 10:15 AM', url: 'https://thedaffodilfestival.org/event/2026-grand-floral-parade/', lat: 47.2421, lng: -122.4374 },
+    { id: 'daffodil-puyallup', name: 'Daffodil Festival — Puyallup', date: 'Apr 4, 12:45 PM', url: 'https://thedaffodilfestival.org/event/2026-grand-floral-parade/', lat: 47.1854, lng: -122.2929 },
+    { id: 'daffodil-sumner',   name: 'Daffodil Festival — Sumner',   date: 'Apr 4, 2:30 PM',  url: 'https://thedaffodilfestival.org/event/2026-grand-floral-parade/', lat: 47.2032, lng: -122.2290 },
+    { id: 'daffodil-orting',   name: 'Daffodil Festival — Orting',   date: 'Apr 4, 5:00 PM',  url: 'https://thedaffodilfestival.org/event/2026-grand-floral-parade/', lat: 47.0970, lng: -122.2038 },
     { id: 'alki-landing',   name: 'Pirate Landing on Alki Beach',        date: 'Jun 27 ~1:30 PM', url: 'https://www.seafair.org/event/pirates-landing/',                                     lat: 47.5776, lng: -122.4185 },
     { id: 'greenwood',      name: 'Greenwood Parade',                    date: 'TBD',           url: 'https://seafairparademarshals.org/locations/greenwood-seafair-parade-2/',               lat: 47.6941, lng: -122.3549 },
     { id: 'bothell',        name: 'Bothell Parade',                      date: 'TBD',           url: 'https://www.bothellwa.gov/269/Fourthof-July-Parade-Pancake-Breakfast',                  lat: 47.7601, lng: -122.2054 },
@@ -758,13 +795,18 @@
 
   document.querySelectorAll('.event-map-btn[data-event-id]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const ev = eventMap[btn.dataset.eventId];
-      if (!ev) return;
+      const id = btn.dataset.eventId;
       document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => {
         map.invalidateSize();
-        map.once('moveend', () => ev.marker.openPopup());
-        map.flyTo([ev.lat, ev.lng], 11);
+        if (id === 'daffodil-all') {
+          map.flyTo([47.17, -122.37], 10);
+        } else {
+          const ev = eventMap[id];
+          if (!ev) return;
+          map.once('moveend', () => ev.marker.openPopup());
+          map.flyTo([ev.lat, ev.lng], 12);
+        }
       }, 600);
     });
   });
