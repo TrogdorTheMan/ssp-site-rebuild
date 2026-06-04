@@ -132,10 +132,84 @@
     border: 1px solid var(--border-gold);
     display: block;
     margin-bottom: 0.6rem;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: zoom-in;
   }
 
-  .rogue-card:hover img { border-color: var(--gold); }
+  .rogue-card:hover img { border-color: var(--gold); transform: scale(1.03); }
+
+  /* ── LIGHTBOX ──────────────────────────────────────────────── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(5, 10, 20, 0.93);
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox-inner img {
+    width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border: 1px solid var(--border-gold);
+    display: block;
+  }
+
+  .lightbox-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    color: var(--cream);
+    margin-top: 0.85rem;
+    text-align: center;
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .lightbox-close:hover { color: var(--gold-pale); }
+
+  .lightbox-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2.8rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    transition: color 0.2s;
+    user-select: none;
+  }
+
+  .lightbox-arrow:hover { color: var(--gold-pale); }
+  .lightbox-arrow.prev { left: 0.5rem; }
+  .lightbox-arrow.next { right: 0.5rem; }
 
   .rogue-silhouette {
     width: 100%;
@@ -295,8 +369,18 @@
   <div class="rogues-grid">
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2024/11/Jay.jpg" alt="Jay Double D Albrecht" loading="lazy">
-      <div class="rogue-name">Jay &#8220;Double D&#8221; Albrecht</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/big-al-donohue.jpg" alt="Big Owl Al Donohue" loading="lazy">
+      <div class="rogue-name">&#8220;Big Owl&#8221; Al Donohue</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/arne-stray-1.jpg" alt="Arne AIC Stray" loading="lazy">
+      <div class="rogue-name">Arne &#8220;AIC&#8221; Stray</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Bill.Setter.jpg" alt="Bill Setter" loading="lazy">
+      <div class="rogue-name">Bill Setter</div>
     </div>
 
     <div class="rogue-card">
@@ -305,93 +389,8 @@
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/bloodeye.jpg" alt="Bloodeye" loading="lazy">
-      <div class="rogue-name">&#8220;Bloodeye&#8221;</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Derek.Brenden.jpg" alt="Derek Brenden" loading="lazy">
-      <div class="rogue-name">Derek Brenden</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Mouthfish.Brown_.jpg" alt="Mouthfish Brown" loading="lazy">
-      <div class="rogue-name">&#8220;Mouthfish&#8221; Brown</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/seth-brown.jpg" alt="Seth Brown" loading="lazy">
-      <div class="rogue-name">Seth Brown</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/lee-burns-4.jpg" alt="Lee Monsoon Burns" loading="lazy">
-      <div class="rogue-name">Lee &#8220;Monsoon&#8221; Burns</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Gary.Cannon.jpg" alt="Gary Canon" loading="lazy">
-      <div class="rogue-name">Gary Canon</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Shaun.Collins.jpg" alt="Shaun Collins" loading="lazy">
-      <div class="rogue-name">Shaun Collins</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/kevin-craft.jpg" alt="Kevin Metal Craft" loading="lazy">
-      <div class="rogue-name">Kevin &#8220;Metal&#8221; Craft</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/marvin-davispsd.jpg" alt="Marvin Davis" loading="lazy">
-      <div class="rogue-name">Marvin Davis</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Kerry.Dean_.jpg" alt="Kerry Dean" loading="lazy">
-      <div class="rogue-name">Kerry Dean</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Mike.Devine.jpg" alt="Mike Bugs Devine" loading="lazy">
-      <div class="rogue-name">Mike &#8220;Bugs&#8221; Devine</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/big-al-donohue.jpg" alt="Big Al Donohue" loading="lazy">
-      <div class="rogue-name">Big Al Donohue</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Calpeye.English-1.jpg" alt="Clapeye English" loading="lazy">
-      <div class="rogue-name">&#8220;Clapeye&#8221; English</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2024/10/cory-francis-framed.jpg" alt="Cory Gimli Francis" loading="lazy">
-      <div class="rogue-name">Cory &#8220;Gimli&#8221; Francis</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2024/10/mark-griffan-framed.jpg" alt="Mark Griffan" loading="lazy">
-      <div class="rogue-name">Mark Griffan</div>
-    </div>
-
-    <div class="rogue-card">
       <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Brent.Harrison.jpg" alt="Brent Harrison" loading="lazy">
       <div class="rogue-name">Brent Harrison</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Steve.Kennedyjpg.jpg" alt="Steve Kennedy" loading="lazy">
-      <div class="rogue-name">Steve Kennedy</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Barnacle.Kuehne.jpg" alt="Barnacle Kuehne" loading="lazy">
-      <div class="rogue-name">&#8220;Barnacle&#8221; Kuehne</div>
     </div>
 
     <div class="rogue-card">
@@ -400,8 +399,28 @@
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Tom.Lether-1.jpg" alt="Tom Lether" loading="lazy">
-      <div class="rogue-name">Tom Lether</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2024/10/cory-francis-framed.jpg" alt="Cory Gimli Francis" loading="lazy">
+      <div class="rogue-name">Cory &#8220;Gimli&#8221; Francis</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/damian-terrell-1-1.jpg" alt="Damian Terrible Terrell" loading="lazy">
+      <div class="rogue-name">Damian &#8220;Terrible&#8221; Terrell</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Warhammer.Sullivan-1.jpg" alt="Danny Warhammer Sullivan" loading="lazy">
+      <div class="rogue-name">Danny &#8220;Warhammer&#8221; Sullivan</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Derek.Brenden.jpg" alt="Derek Brenden" loading="lazy">
+      <div class="rogue-name">Derek Brenden</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/bloodeye.jpg" alt="Dick Bloodeye Alba" loading="lazy">
+      <div class="rogue-name">Dick &#8220;Bloodeye&#8221; Alba</div>
     </div>
 
     <div class="rogue-card">
@@ -410,8 +429,13 @@
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Joshua.Splinter.jpg" alt="Joshua Splinter Makings" loading="lazy">
-      <div class="rogue-name">Joshua &#8220;Splinter&#8221; Makings</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Barnacle.Kuehne.jpg" alt="Douglas Barnacle Kuehne" loading="lazy">
+      <div class="rogue-name">Douglas &#8220;Barnacle&#8221; Kuehne</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Gary.Cannon.jpg" alt="Gary Canon" loading="lazy">
+      <div class="rogue-name">Gary Canon</div>
     </div>
 
     <div class="rogue-card">
@@ -420,8 +444,8 @@
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Scott-McIntyre.jpg" alt="Scott McIntyre" loading="lazy">
-      <div class="rogue-name">Scott McIntyre</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2024/11/Jay.jpg" alt="Jay Double D Albrecht" loading="lazy">
+      <div class="rogue-name">Jay &#8220;Double D&#8221; Albrecht</div>
     </div>
 
     <div class="rogue-card">
@@ -430,8 +454,58 @@
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Pat-Patterson.jpg" alt="Pat Doc Patterson" loading="lazy">
-      <div class="rogue-name">Pat &#8220;Doc&#8221; Patterson</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Rooster.jpg" alt="Joel Rooster Smith" loading="lazy">
+      <div class="rogue-name">Joel &#8220;Rooster&#8221; Smith</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Joshua.Splinter.jpg" alt="Joshua Splinter Makings" loading="lazy">
+      <div class="rogue-name">Joshua &#8220;Splinter&#8221; Makings</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Keith-Titus.jpg" alt="Keith Titus" loading="lazy">
+      <div class="rogue-name">Keith Titus</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Kerry.Dean_.jpg" alt="Kerry Dean" loading="lazy">
+      <div class="rogue-name">Kerry Dean</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/kevin-craft.jpg" alt="Kevin Metal Craft" loading="lazy">
+      <div class="rogue-name">Kevin &#8220;Metal&#8221; Craft</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Calpeye.English-1.jpg" alt="Lance Clapeye English" loading="lazy">
+      <div class="rogue-name">Lance &#8220;Clapeye&#8221; English</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/lee-burns-4.jpg" alt="Lee Monsoon Burns" loading="lazy">
+      <div class="rogue-name">Lee &#8220;Monsoon&#8221; Burns</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2024/10/mark-griffan-framed.jpg" alt="Mark Griffan" loading="lazy">
+      <div class="rogue-name">Mark Griffan</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/marvin-davispsd.jpg" alt="Marvin Davis" loading="lazy">
+      <div class="rogue-name">Marvin Davis</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Mouthfish.Brown_.jpg" alt="Michael Mouthfish Brown" loading="lazy">
+      <div class="rogue-name">Michael &#8220;Mouthfish&#8221; Brown</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Mike.Devine.jpg" alt="Mike Bugs Devine" loading="lazy">
+      <div class="rogue-name">Mike &#8220;Bugs&#8221; Devine</div>
     </div>
 
     <div class="rogue-card">
@@ -445,38 +519,38 @@
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Bill.Setter.jpg" alt="Bill Setter" loading="lazy">
-      <div class="rogue-name">Bill Setter</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Pat-Patterson.jpg" alt="Pat Doc Patterson" loading="lazy">
+      <div class="rogue-name">Pat &#8220;Doc&#8221; Patterson</div>
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Rooster.jpg" alt="Joel Rooster Smith" loading="lazy">
-      <div class="rogue-name">Joel &#8220;Rooster&#8221; Smith</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Scott-McIntyre.jpg" alt="Scott McIntyre" loading="lazy">
+      <div class="rogue-name">Scott McIntyre</div>
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/arne-stray-1.jpg" alt="Arne AIC Stray" loading="lazy">
-      <div class="rogue-name">Arne &#8220;AIC&#8221; Stray</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/seth-brown.jpg" alt="Seth Brown" loading="lazy">
+      <div class="rogue-name">Seth Brown</div>
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Warhammer.Sullivan-1.jpg" alt="Danny Warhammer Sullivan" loading="lazy">
-      <div class="rogue-name">Danny &#8220;Warhammer&#8221; Sullivan</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Shaun.Collins.jpg" alt="Shaun Collins" loading="lazy">
+      <div class="rogue-name">Shaun Collins</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Steve.Kennedyjpg.jpg" alt="Steve Kennedy" loading="lazy">
+      <div class="rogue-name">Steve Kennedy</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Tom.Lether-1.jpg" alt="Tom Lether" loading="lazy">
+      <div class="rogue-name">Tom Lether</div>
     </div>
 
     <div class="rogue-card">
       <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Walter.Taucher.jpg" alt="Walter Tattoo Taucher" loading="lazy">
       <div class="rogue-name">Walter &#8220;Tattoo&#8221; Taucher</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/damian-terrell-1-1.jpg" alt="Damian Terrible Terrell" loading="lazy">
-      <div class="rogue-name">Damian &#8220;Terrible&#8221; Terrell</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/Keith-Titus.jpg" alt="Keith Titus" loading="lazy">
-      <div class="rogue-name">Keith Titus</div>
     </div>
 
   </div>
@@ -528,6 +602,17 @@
   </div>
 </footer>
 
+<!-- ── LIGHTBOX ──────────────────────────────────────────────────── -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lb-close" aria-label="Close">&times;</button>
+  <button class="lightbox-arrow prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <div class="lightbox-inner">
+    <img id="lb-img" src="" alt="">
+    <div class="lightbox-name" id="lb-name"></div>
+  </div>
+  <button class="lightbox-arrow next" id="lb-next" aria-label="Next">&#8250;</button>
+</div>
+
 <script>
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.getElementById('nav-links');
@@ -537,6 +622,48 @@
       e.stopPropagation();
       btn.closest('.dropdown').classList.toggle('open');
     });
+  });
+
+  // Lightbox
+  const cards   = Array.from(document.querySelectorAll('.rogue-card img'));
+  const lightbox = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const lbName  = document.getElementById('lb-name');
+  let current   = 0;
+
+  function openLightbox(idx) {
+    current = idx;
+    const img  = cards[idx];
+    const name = img.closest('.rogue-card').querySelector('.rogue-name').innerHTML;
+    lbImg.src  = img.src;
+    lbImg.alt  = img.alt;
+    lbName.innerHTML = name;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function navigate(dir) {
+    current = (current + dir + cards.length) % cards.length;
+    openLightbox(current);
+  }
+
+  cards.forEach((img, idx) => img.addEventListener('click', () => openLightbox(idx)));
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', () => navigate(-1));
+  document.getElementById('lb-next').addEventListener('click', () => navigate(1));
+
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowLeft')   navigate(-1);
+    if (e.key === 'ArrowRight')  navigate(1);
   });
 </script>
 </body>
