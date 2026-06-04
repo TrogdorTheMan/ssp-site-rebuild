@@ -124,7 +124,7 @@
   }
 
   .sponsor-slot.filled { padding: 1.5rem 2rem; min-height: 120px; }
-  .sponsor-slot.filled img { max-height: 80px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.85; transition: opacity 0.2s; }
+  .sponsor-slot.filled img { max-height: 100px; max-width: 100%; width: auto; object-fit: contain; opacity: 0.9; transition: opacity 0.2s; }
   .sponsor-slot.filled:hover img { opacity: 1; }
 
   .sponsor-slot.placeholder {
@@ -352,21 +352,17 @@
 <!-- ── SPONSORS ───────────────────────────────────────────────────── -->
 <div class="sponsor-section">
 
-  <div class="tier-label">Featured Partners</div>
-  <div class="sponsor-grid tier-featured">
-    <div class="sponsor-slot filled">
+  <div class="tier-label">Our Sponsors</div>
+  <div class="sponsor-grid tier-all" id="sponsor-grid">
+    <div class="sponsor-slot filled pinned">
       <img src="https://seafairpirates.org/wp-content/uploads/2023/07/tahomawind-photography-1.jpg" alt="Tahoma Wind Photography" loading="lazy">
     </div>
-    <div class="sponsor-slot filled">
+    <div class="sponsor-slot filled pinned">
       <img src="https://seafairpirates.org/wp-content/uploads/2024/08/Mission-Cantina-Logo-2.jpg" alt="Mission Cantina" loading="lazy">
     </div>
-    <div class="sponsor-slot filled">
+    <div class="sponsor-slot filled pinned">
       <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Chelan-Cafe-feathered.jpg" alt="Chelan Cafe" loading="lazy">
     </div>
-  </div>
-
-  <div class="tier-label">Our Sponsors</div>
-  <div class="sponsor-grid tier-all" id="sponsor-shuffle-grid">
     <div class="sponsor-slot filled">
       <img src="https://seafairpirates.org/wp-content/uploads/2023/06/DCI-engineers-logo.jpg" alt="DCI Engineers" loading="lazy">
     </div>
@@ -486,13 +482,13 @@
     });
   });
 
-  // Shuffle the lower sponsor grid on every load
-  const sg = document.getElementById('sponsor-shuffle-grid');
-  const slots = Array.from(sg.children);
-  for (let i = slots.length - 1; i > 0; i--) {
+  // Shuffle non-pinned sponsors on every load, pinned 3 stay at top
+  const sg = document.getElementById('sponsor-grid');
+  const shuffleable = Array.from(sg.querySelectorAll('.sponsor-slot:not(.pinned)'));
+  for (let i = shuffleable.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    sg.appendChild(slots[j]);
-    [slots[i], slots[j]] = [slots[j], slots[i]];
+    sg.appendChild(shuffleable[j]);
+    [shuffleable[i], shuffleable[j]] = [shuffleable[j], shuffleable[i]];
   }
 </script>
 </body>
