@@ -2,11 +2,9 @@
 
 A ground-up static rebuild of [seafairpirates.org](https://seafairpirates.org), the official website of the Seattle Seafair Pirates.
 
-View live: https://trogdortheman.github.io/ssp-site-rebuild/
-
 ## About the Project
 
-The Seattle Seafair Pirates are a Seattle civic organization founded in 1949, best known for their annual theatrical "invasion" of the Seattle waterfront to open Seafair each summer. This project rebuilds their existing WordPress site as a clean, fast static site suitable for hosting on GitHub Pages or Netlify.
+The Seattle Seafair Pirates are a Seattle civic organization founded in 1949, best known for their annual theatrical "invasion" of the Seattle waterfront to open Seafair each summer. This project rebuilds their existing WordPress site as a clean, fast static site hosted on Azure Static Web Apps.
 
 **Goals:**
 - Replace the aging WordPress site with a lightweight, maintainable static HTML/CSS site
@@ -23,8 +21,17 @@ This project is maintained by **TrogdorTheMan** — an IT professional and activ
 - Plain HTML5 & CSS3 — no frameworks, no build step
 - Fonts via Google Fonts (Playfair Display, Crimson Pro, Space Mono)
 - Leaflet.js for the interactive 2026 Destinations map
-- Images served from the existing seafairpirates.org CDN until Netlify go-live
-- Deployment target: GitHub Pages / Netlify
+- Images served from the existing seafairpirates.org CDN until go-live
+- Deployment: Azure Static Web Apps (free tier)
+
+## Deployment
+
+Deployment is via the GitHub Actions workflow at `.github/workflows/azure-static-web-apps.yml`. The workflow is currently set to manual trigger (`workflow_dispatch`) only — it will be re-enabled for automatic deployment on push once the Azure Static Web App resource and API token are in place.
+
+**To deploy:**
+1. Create an Azure Static Web App resource (free tier)
+2. Add the deployment token as `AZURE_STATIC_WEB_APPS_API_TOKEN` in GitHub repo secrets
+3. Re-enable the `push` trigger in the workflow file
 
 ## Pages
 
@@ -65,3 +72,4 @@ This project is maintained by **TrogdorTheMan** — an IT professional and activ
 | Page | File |
 |---|---|
 | Sponsors | `sponsors.html` |
+| 404 | `404.html` |
