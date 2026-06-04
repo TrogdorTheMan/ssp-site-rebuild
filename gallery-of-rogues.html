@@ -369,8 +369,8 @@
   <div class="rogues-grid">
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/big-al-donohue.jpg" alt="Big Owl Al Donohue" loading="lazy">
-      <div class="rogue-name">&#8220;Big Owl&#8221; Al Donohue</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/big-al-donohue.jpg" alt="Al Big Owl Donohue" loading="lazy">
+      <div class="rogue-name">Al &#8220;Big Owl&#8221; Donohue</div>
     </div>
 
     <div class="rogue-card">
@@ -381,11 +381,6 @@
     <div class="rogue-card">
       <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Bill.Setter.jpg" alt="Bill Setter" loading="lazy">
       <div class="rogue-name">Bill Setter</div>
-    </div>
-
-    <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/bodyshot-bader.jpg" alt="Bodyshot Bader" loading="lazy">
-      <div class="rogue-name">&#8220;Bodyshot&#8221; Bader</div>
     </div>
 
     <div class="rogue-card">
@@ -436,6 +431,11 @@
     <div class="rogue-card">
       <img src="https://seafairpirates.org/wp-content/uploads/2023/08/Gary.Cannon.jpg" alt="Gary Canon" loading="lazy">
       <div class="rogue-name">Gary Canon</div>
+    </div>
+
+    <div class="rogue-card">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/08/bodyshot-bader.jpg" alt="Gus Bodyshot Bader" loading="lazy">
+      <div class="rogue-name">Gus &#8220;Bodyshot&#8221; Bader</div>
     </div>
 
     <div class="rogue-card">
@@ -534,8 +534,8 @@
     </div>
 
     <div class="rogue-card">
-      <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Shaun.Collins.jpg" alt="Shaun Collins" loading="lazy">
-      <div class="rogue-name">Shaun Collins</div>
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Shaun.Collins.jpg" alt="Shaun Preacher Collins" loading="lazy">
+      <div class="rogue-name">Shaun &#8220;Preacher&#8221; Collins</div>
     </div>
 
     <div class="rogue-card">
@@ -623,6 +623,15 @@
       btn.closest('.dropdown').classList.toggle('open');
     });
   });
+
+  // Shuffle gallery on every load
+  const grid = document.querySelector('.rogues-grid');
+  const allCards = Array.from(grid.children);
+  for (let i = allCards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    grid.appendChild(allCards[j]);
+    [allCards[i], allCards[j]] = [allCards[j], allCards[i]];
+  }
 
   // Lightbox
   const cards   = Array.from(document.querySelectorAll('.rogue-card img'));
