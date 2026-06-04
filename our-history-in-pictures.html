@@ -10,7 +10,221 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"></noscript>
-<link rel="stylesheet" href="nav.css">
+<style>
+/* Uses CSS custom properties defined in each page's :root block.
+   Fallbacks ensure the nav renders correctly even without them. */
+
+/* ── SKIP NAVIGATION ──────────────────────────────────────────────── */
+.skip-nav {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  background: #c8960a;
+  color: #0a1628;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-family: 'Crimson Pro', serif;
+  text-decoration: none;
+  border-radius: 0 0 3px 3px;
+  z-index: 9999;
+  transition: top 0.1s;
+}
+.skip-nav:focus { top: 0; }
+
+/* ── FOCUS STYLES ─────────────────────────────────────────────────── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #e8b420;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── NAVIGATION ───────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-gold, rgba(200,150,10,0.3));
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  transition: background 0.3s;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--gold-light, #e8b420);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.nav-logo img { height: 40px; width: auto; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+}
+
+.nav-links li { position: relative; }
+
+.nav-links > li > a,
+.nav-links > li > button {
+  display: block;
+  padding: 0 1rem;
+  height: 64px;
+  line-height: 64px;
+  text-decoration: none;
+  color: #e8dfc8;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.nav-links > li > a:hover,
+.nav-links > li > button:hover { color: var(--gold-light, #e8b420); }
+
+.dropdown { position: relative; }
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 64px; left: 0;
+  background: #0f2040;
+  border: 1px solid rgba(200,150,10,0.3);
+  border-top: 2px solid #c8960a;
+  min-width: 220px;
+  list-style: none;
+  z-index: 200;
+}
+
+.dropdown:hover .dropdown-menu { display: block; }
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  color: #e8dfc8;
+  text-decoration: none;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(200,150,10,0.1);
+  transition: background 0.15s, color 0.15s;
+}
+
+.dropdown-menu li a:hover { background: #1a3358; color: #f5d97a; }
+
+.nav-cta {
+  margin-left: 1rem;
+  padding: 0.45rem 1.2rem !important;
+  height: auto !important;
+  line-height: normal !important;
+  background: #c8960a !important;
+  color: #0a1628 !important;
+  font-weight: 700 !important;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem !important;
+  text-transform: uppercase;
+  transition: background 0.2s !important;
+}
+
+.nav-cta:hover { background: #e8b420 !important; color: #0a1628 !important; }
+
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: 1.5rem;
+}
+
+.nav-social a { color: #8a9ab5; transition: color 0.2s; display: flex; align-items: center; }
+.nav-social a:hover { color: var(--gold-light, #e8b420); }
+.nav-social svg { width: 18px; height: 18px; fill: currentColor; }
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #e8dfc8;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger svg { width: 24px; height: 24px; fill: currentColor; }
+
+/* ── NAV TIER 1: hide logo text + social icons ────────────────────── */
+@media (max-width: 1450px) {
+  .nav-logo { font-size: 0; gap: 0; }
+  .nav-logo img { height: 36px; }
+  .nav-social { display: none; }
+}
+
+/* ── NAV TIER 2: compact — tighter padding, hide CTA ─────────────── */
+@media (max-width: 1100px) {
+  .nav-links > li > a,
+  .nav-links > li > button { padding: 0 0.55rem; font-size: 0.82rem; }
+  .nav-cta { display: none; }
+  nav { padding: 0 0.75rem; }
+}
+
+/* ── NAV TIER 3: hamburger — Destinations + Contact pinned ───────── */
+@media (max-width: 800px) {
+  .nav-links { display: flex; align-items: center; }
+  .nav-links > li { display: none; }
+  .nav-links > li:nth-child(2),
+  .nav-links > li:nth-child(6) { display: block; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(200,150,10,0.3);
+    padding: 0.25rem 0 0.75rem;
+    z-index: 999;
+    gap: 0;
+  }
+  .nav-links.open > li { display: block; }
+  .nav-links.open > li > a,
+  .nav-links.open > li > button {
+    height: auto;
+    line-height: 1.4;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(200,150,10,0.1);
+  }
+  .nav-links.open .dropdown-menu {
+    position: static;
+    border: none;
+    background: rgba(200,150,10,0.06);
+    display: none;
+    padding: 0 0 0.25rem 1rem;
+  }
+  .nav-links.open .dropdown.open .dropdown-menu { display: block; }
+  .hamburger { display: block; }
+  nav { padding: 0 1rem; }
+}
+</style>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   img { max-width: 100%; height: auto; }
