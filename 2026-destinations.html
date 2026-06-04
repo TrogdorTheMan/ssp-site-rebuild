@@ -682,6 +682,18 @@
       }, 600);
     });
   });
+
+  // Auto-zoom to event if ?event=ID was passed from homepage
+  const urlEvent = new URLSearchParams(window.location.search).get('event');
+  if (urlEvent && eventMap[urlEvent]) {
+    const ev = eventMap[urlEvent];
+    document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => {
+      map.invalidateSize();
+      map.once('moveend', () => ev.marker.openPopup());
+      map.flyTo([ev.lat, ev.lng], 12);
+    }, 600);
+  }
 </script>
 </body>
 </html>
