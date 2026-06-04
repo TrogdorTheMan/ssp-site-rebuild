@@ -551,15 +551,16 @@
     font-size: 1rem;
     padding: 0.7rem 1rem;
     border-radius: 3px;
-    outline: none;
     transition: border-color 0.2s;
     width: 100%;
   }
 
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
+  .form-group input:focus-visible,
+  .form-group select:focus-visible,
+  .form-group textarea:focus-visible {
     border-color: var(--gold);
+    outline: 2px solid var(--gold);
+    outline-offset: 0;
   }
 
   .form-group select option { background: var(--navy-mid); }
@@ -697,6 +698,7 @@
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
 
 <!-- ── NAV ──────────────────────────────────────────────────────── -->
 <nav id="navbar">
@@ -765,6 +767,7 @@
     <svg viewBox="0 0 24 24"><rect y="4" width="24" height="2" rx="1"/><rect y="11" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
   </button>
 </nav>
+<main id="main-content">
 
 <!-- ── HERO ──────────────────────────────────────────────────────── -->
 <section class="hero" id="top">
@@ -1012,6 +1015,7 @@
 </section>
 
 <!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+</main>
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">

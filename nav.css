@@ -1,6 +1,31 @@
 /* Uses CSS custom properties defined in each page's :root block.
    Fallbacks ensure the nav renders correctly even without them. */
 
+/* ── SKIP NAVIGATION ──────────────────────────────────────────────── */
+.skip-nav {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  background: #c8960a;
+  color: #0a1628;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-family: 'Crimson Pro', serif;
+  text-decoration: none;
+  border-radius: 0 0 3px 3px;
+  z-index: 9999;
+  transition: top 0.1s;
+}
+.skip-nav:focus { top: 0; }
+
+/* ── FOCUS STYLES ─────────────────────────────────────────────────── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #e8b420;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* ── NAVIGATION ───────────────────────────────────────────────────── */
 nav {
   position: fixed;
