@@ -161,12 +161,16 @@
     align-items: center;
   }
 
-  .lightbox-inner img {
+  .lightbox-img-wrap {
     width: 100%;
-    max-height: 78vh;
-    object-fit: contain;
+    overflow: hidden;
     border: 1px solid var(--border-gold);
+  }
+
+  .lightbox-img-wrap img {
+    width: 100%;
     display: block;
+    margin-bottom: -16%;
   }
 
   .lightbox-name {
@@ -607,7 +611,9 @@
   <button class="lightbox-close" id="lb-close" aria-label="Close">&times;</button>
   <button class="lightbox-arrow prev" id="lb-prev" aria-label="Previous">&#8249;</button>
   <div class="lightbox-inner">
-    <img id="lb-img" src="" alt="">
+    <div class="lightbox-img-wrap">
+      <img id="lb-img" src="" alt="">
+    </div>
     <div class="lightbox-name" id="lb-name"></div>
   </div>
   <button class="lightbox-arrow next" id="lb-next" aria-label="Next">&#8250;</button>
