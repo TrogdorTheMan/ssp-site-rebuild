@@ -106,10 +106,12 @@
     margin-bottom: 4rem;
   }
 
-  .sponsor-grid.tier-presenting { grid-template-columns: 1fr; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 4rem; }
-  .sponsor-grid.tier-gold       { grid-template-columns: repeat(2, 1fr); }
-  .sponsor-grid.tier-silver     { grid-template-columns: repeat(3, 1fr); }
-  .sponsor-grid.tier-community  { grid-template-columns: repeat(4, 1fr); }
+  .sponsor-grid.tier-featured   { grid-template-columns: repeat(3, 1fr); }
+  .sponsor-grid.tier-all        { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+
+  @media (max-width: 600px) {
+    .sponsor-grid.tier-featured { grid-template-columns: 1fr; }
+  }
 
   .sponsor-slot {
     display: flex;
@@ -347,35 +349,57 @@
   <p class="subtitle">The generous partners who make 75+ years of Seafair tradition possible</p>
 </header>
 
-<!-- ── SPONSOR TIERS ──────────────────────────────────────────────── -->
+<!-- ── SPONSORS ───────────────────────────────────────────────────── -->
 <div class="sponsor-section">
 
-  <div class="tier-label">Presenting Sponsor</div>
-  <div class="sponsor-grid tier-presenting">
-    <div class="sponsor-slot placeholder">
-      <span>Your Logo Here</span>
+  <div class="tier-label">Featured Partners</div>
+  <div class="sponsor-grid tier-featured">
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/07/tahomawind-photography-1.jpg" alt="Tahoma Wind Photography" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2024/08/Mission-Cantina-Logo-2.jpg" alt="Mission Cantina" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Chelan-Cafe-feathered.jpg" alt="Chelan Cafe" loading="lazy">
     </div>
   </div>
 
-  <div class="tier-label">Gold Sponsors</div>
-  <div class="sponsor-grid tier-gold">
-    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
-    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
-  </div>
-
-  <div class="tier-label">Silver Sponsors</div>
-  <div class="sponsor-grid tier-silver">
-    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
-    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
-    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
-  </div>
-
-  <div class="tier-label">Community Sponsors</div>
-  <div class="sponsor-grid tier-community">
-    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
-    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
-    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
-    <div class="sponsor-slot placeholder"><span>Your Logo Here</span></div>
+  <div class="tier-label">Our Sponsors</div>
+  <div class="sponsor-grid tier-all" id="sponsor-shuffle-grid">
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/DCI-engineers-logo.jpg" alt="DCI Engineers" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/JS.jpg" alt="J&amp;S Masonry" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/aluma-systems-logo.jpg" alt="Aluma Systems" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/brundage-bone-logo.jpg" alt="Brundage-Bone" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/cadman.jpg" alt="Cadman" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/cave-man.jpg" alt="Cave Man" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/harris-rebar-logo.jpg" alt="Harris Rebar" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/matheus-lumber-logo.jpg" alt="Matheus Lumber" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/pacer-steel-logo.jpg" alt="Pacer Steel" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/06/sodo-builders.jpg" alt="SODO Builders" loading="lazy">
+    </div>
+    <div class="sponsor-slot filled">
+      <img src="https://seafairpirates.org/wp-content/uploads/2023/07/global-diving-and-salvage-inc.jpg" alt="Global Diving and Salvage" loading="lazy">
+    </div>
   </div>
 
 </div>
@@ -461,6 +485,15 @@
       btn.closest('.dropdown').classList.toggle('open');
     });
   });
+
+  // Shuffle the lower sponsor grid on every load
+  const sg = document.getElementById('sponsor-shuffle-grid');
+  const slots = Array.from(sg.children);
+  for (let i = slots.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    sg.appendChild(slots[j]);
+    [slots[i], slots[j]] = [slots[j], slots[i]];
+  }
 </script>
 </body>
 </html>
