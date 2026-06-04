@@ -585,18 +585,34 @@
     justify-content: center;
     align-items: center;
     gap: 2.5rem;
-    opacity: 0.5;
+    opacity: 0.7;
   }
 
-  .sponsor-placeholder {
+  .sponsors-logos img {
+    max-height: 70px;
+    max-width: 160px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(30%);
+  }
+
+  .sponsor-more {
     font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--gold);
     padding: 0.5rem 1.5rem;
     border: 1px solid var(--border-gold);
     border-radius: 3px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .sponsor-more:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
   }
 
   /* ── FOOTER ──────────────────────────────────────────────────── */
@@ -958,10 +974,10 @@
 <section class="sponsors">
   <p>Our generous sponsors</p>
   <div class="sponsors-logos">
-    <span class="sponsor-placeholder">Your Logo Here</span>
-    <span class="sponsor-placeholder">Your Logo Here</span>
-    <span class="sponsor-placeholder">Your Logo Here</span>
-    <span class="sponsor-placeholder">Your Logo Here</span>
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/07/tahomawind-photography-1.jpg" alt="Tahoma Wind Photography" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2024/08/Mission-Cantina-Logo-2.jpg" alt="Mission Cantina" loading="lazy">
+    <img src="https://seafairpirates.org/wp-content/uploads/2023/12/Chelan-Cafe-feathered.jpg" alt="Chelan Cafe" loading="lazy">
+    <a class="sponsor-more" href="sponsors.html">See all sponsors &rarr;</a>
   </div>
 </section>
 
